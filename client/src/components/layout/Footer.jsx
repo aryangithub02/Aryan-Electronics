@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cpu, ShieldCheck, Zap, Activity, ExternalLink } from 'lucide-react';
+import { Cpu, ShieldCheck, Zap } from 'lucide-react';
 
 export const Footer = () => {
   return (
     <footer className="border-t border-slate-800/80 bg-slate-950/80 pt-16 pb-12 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800/60">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/60">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
@@ -96,49 +96,12 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Platform Status */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono">
-              Architecture
-            </h4>
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Platform:</span>
-                <span className="font-mono text-cyan-400 font-semibold">Active & Aggregated</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Frontend:</span>
-                <span className="font-mono text-slate-300">React + Tailwind</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Backend:</span>
-                <span className="font-mono text-slate-300">Node / Express</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Database:</span>
-                <span className="font-mono text-emerald-400">MongoDB Ready</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} Aryan Electronics. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span>Built with clean scalability</span>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
-            <a
-              href="/api/health"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
-            >
-              <Activity className="w-3.5 h-3.5 text-cyan-400" />
-              API Diagnostics <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
+          <p className="text-slate-500">Premium Hardware Discovery & Aggregation</p>
         </div>
       </div>
     </footer>
