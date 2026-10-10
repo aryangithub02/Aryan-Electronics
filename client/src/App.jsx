@@ -1,25 +1,26 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
 import Spinner from './components/common/Spinner';
+import lazyWithRetry from './utils/lazyWithRetry';
 
-// Code-split pages for performance optimization
-const HomePage = lazy(() => import('./pages/HomePage'));
-const SectorsPage = lazy(() => import('./pages/SectorsPage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
-const ComparePage = lazy(() => import('./pages/ComparePage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const AccountPage = lazy(() => import('./pages/AccountPage'));
-const WishlistPage = lazy(() => import('./pages/WishlistPage'));
-const SavedProductsPage = lazy(() => import('./pages/SavedProductsPage'));
-const RecentlyViewedPage = lazy(() => import('./pages/RecentlyViewedPage'));
-const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+// Code-split pages with automatic ChunkLoadError retry recovery
+const HomePage = lazyWithRetry(() => import('./pages/HomePage'));
+const SectorsPage = lazyWithRetry(() => import('./pages/SectorsPage'));
+const ProductsPage = lazyWithRetry(() => import('./pages/ProductsPage'));
+const ProductDetailPage = lazyWithRetry(() => import('./pages/ProductDetailPage'));
+const ComparePage = lazyWithRetry(() => import('./pages/ComparePage'));
+const LoginPage = lazyWithRetry(() => import('./pages/LoginPage'));
+const RegisterPage = lazyWithRetry(() => import('./pages/RegisterPage'));
+const AccountPage = lazyWithRetry(() => import('./pages/AccountPage'));
+const WishlistPage = lazyWithRetry(() => import('./pages/WishlistPage'));
+const SavedProductsPage = lazyWithRetry(() => import('./pages/SavedProductsPage'));
+const RecentlyViewedPage = lazyWithRetry(() => import('./pages/RecentlyViewedPage'));
+const AdminDashboardPage = lazyWithRetry(() => import('./pages/admin/AdminDashboardPage'));
+const NotFoundPage = lazyWithRetry(() => import('./pages/NotFoundPage'));
 
 const PageLoader = () => (
   <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-3">
