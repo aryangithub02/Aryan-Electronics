@@ -8,7 +8,7 @@ import EmptyState from '../components/common/EmptyState';
 import { formatCurrency, calculateDiscountPrice, formatRating, handleImageError } from '../utils/formatters';
 
 export const WishlistPage = () => {
-  const { wishlist, toggleWishlist, addToCompare, isInCompare } = useAuth();
+  const { wishlist, toggleWishlist, addToCompare, isInCompare, token } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -27,7 +27,17 @@ export const WishlistPage = () => {
         </p>
       </div>
 
-      {wishlist.length === 0 ? (
+      {!token ? (
+        <div className="py-12">
+          <EmptyState
+            icon={Heart}
+            title="Sign In to View Your Wishlist"
+            description="You need to be signed in to save products to your wishlist and access them across all your devices."
+            actionLabel="Sign In Now"
+            onAction={() => navigate('/login')}
+          />
+        </div>
+      ) : wishlist.length === 0 ? (
         <div className="py-12">
           <EmptyState
             title="Your Wishlist is Empty"

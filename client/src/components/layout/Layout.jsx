@@ -2,8 +2,12 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ErrorBoundary from '../common/ErrorBoundary';
+import AuthPromptModal from '../common/AuthPromptModal';
+import { useAuth } from '../../context/AuthContext';
 
 export const Layout = ({ children }) => {
+  const { authPrompt, closeAuthPrompt } = useAuth();
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-brand-500 selection:text-white">
       <Navbar />
@@ -13,8 +17,15 @@ export const Layout = ({ children }) => {
         </ErrorBoundary>
       </main>
       <Footer />
+      <AuthPromptModal
+        isOpen={Boolean(authPrompt?.isOpen)}
+        onClose={closeAuthPrompt}
+        message={authPrompt?.message}
+        type={authPrompt?.type}
+      />
     </div>
   );
 };
 
 export default Layout;
+

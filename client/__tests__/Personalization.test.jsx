@@ -102,6 +102,18 @@ describe('Phase 2 Personalization UI Tests', () => {
     expect(screen.getByText('Asus ROG')).toBeInTheDocument();
   });
 
+  it('renders WishlistPage sign in prompt when unauthenticated', () => {
+    renderWithContext(<WishlistPage />, { token: null, isAuthenticated: false });
+    expect(screen.getByText(/Sign In to View Your Wishlist/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Sign In Now/i })).toBeInTheDocument();
+  });
+
+  it('renders SavedProductsPage sign in prompt when unauthenticated', () => {
+    renderWithContext(<SavedProductsPage />, { token: null, isAuthenticated: false });
+    expect(screen.getByText(/Sign In to View Saved Hardware/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Sign In Now/i })).toBeInTheDocument();
+  });
+
   it('renders AccountPage dashboard with stats, tabs, and sign out button', () => {
     renderWithContext(<AccountPage />);
 

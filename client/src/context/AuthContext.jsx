@@ -16,6 +16,9 @@ const defaultContextValue = {
   savedProducts: [],
   recentlyViewed: [],
   comparisonList: [],
+  authPrompt: null,
+  requireAuth: () => false,
+  closeAuthPrompt: () => {},
   login: async () => {},
   register: async () => {},
   logout: () => {},
@@ -60,6 +63,7 @@ export const AuthProvider = ({ children }) => {
   });
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [authPrompt, setAuthPrompt] = useState(null);
 
   // Personalized collections (contain resolved product objects or objects with {id})
   const [wishlist, setWishlist] = useState([]);
@@ -67,14 +71,31 @@ export const AuthProvider = ({ children }) => {
   const [recentlyViewed, setRecentlyViewed] = useState([]);
   const [comparisonList, setComparisonList] = useState([]);
 
+  const requireAuth = useCallback((message, type = 'wishlist') => {
+    setAuthPrompt({
+      isOpen: true,
+      message:
+        message ||
+        (type === 'saved'
+          ? 'Please sign in first to save hardware components to your account.'
+          : 'Please sign in first to save items to your wishlist.'),
+      type
+    });
+    return false;
+  }, []);
+
+  const closeAuthPrompt = useCallback(() => {
+    setAuthPrompt(null);
+  }, []);
+
   // Load server lists when logged in, or local guest lists when guest
   const refreshUserData = useCallback(async () => {
     const currentToken = localStorage.getItem(TOKEN_KEY);
     if (!currentToken) {
       setUser(null);
-      // Load guest state from localStorage
-      setWishlist(safeGetJson(GUEST_WISHLIST_KEY, []));
-      setSavedProducts(safeGetJson(GUEST_SAVED_KEY, []));
+      // Wishlist and Saved hardware require an authenticated account
+      setWishlist([]);
+      setSavedProducts([]);
       setComparisonList(safeGetJson(GUEST_COMPARE_KEY, []));
       setRecentlyViewed(safeGetJson(GUEST_RECENT_KEY, []));
       setIsLoading(false);
@@ -173,16 +194,19 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await api.logout().catch(() => {});
+      if (token) {
+        await api.logout().catch(() => {});
+      }
     } catch (e) {
       // ignore
     } finally {
       localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(GUEST_WISHLIST_KEY);
+      localStorage.removeItem(GUEST_SAVED_KEY);
       setToken(null);
       setUser(null);
-      // Fallback back to guest lists
-      setWishlist(safeGetJson(GUEST_WISHLIST_KEY, []));
-      setSavedProducts(safeGetJson(GUEST_SAVED_KEY, []));
+      setWishlist([]);
+      setSavedProducts([]);
       setComparisonList(safeGetJson(GUEST_COMPARE_KEY, []));
       setRecentlyViewed(safeGetJson(GUEST_RECENT_KEY, []));
     }
@@ -191,7 +215,7 @@ export const AuthProvider = ({ children }) => {
   // Helper ID extractor
   const getId = (item) => (typeof item === 'string' ? item : item?.id || item?._id);
 
-  // Wishlist actions
+  // Wishlist actions (Authentication Required)
   const isInWishlist = useCallback(
     (productId) => {
       const id = getId(productId);
@@ -202,37 +226,33 @@ export const AuthProvider = ({ children }) => {
 
   const toggleWishlist = async (product) => {
     const id = getId(product);
-    if (!id) return;
-    const currentlyIn = isInWishlist(id);
+    if (!id) return false;
 
-    if (token) {
-      try {
-        if (currentlyIn) {
-          const res = await api.removeFromWishlist(id);
-          if (res?.data) setWishlist(res.data);
-        } else {
-          const res = await api.addToWishlist(id);
-          if (res?.data) setWishlist(res.data);
-        }
-      } catch (err) {
-        console.error('Wishlist update failed:', err);
-        throw err;
-      }
-    } else {
-      // Guest local state
-      let updated;
+    if (!token) {
+      requireAuth(
+        'Please sign in to save items to your wishlist. Sign in or create an account to curate your personal favorites.',
+        'wishlist'
+      );
+      return false;
+    }
+
+    const currentlyIn = isInWishlist(id);
+    try {
       if (currentlyIn) {
-        updated = wishlist.filter((item) => getId(item) !== id);
+        const res = await api.removeFromWishlist(id);
+        if (res?.data) setWishlist(res.data);
       } else {
-        const itemToAdd = typeof product === 'object' ? product : { id };
-        updated = [...wishlist, itemToAdd];
+        const res = await api.addToWishlist(id);
+        if (res?.data) setWishlist(res.data);
       }
-      setWishlist(updated);
-      safeSetJson(GUEST_WISHLIST_KEY, updated);
+      return true;
+    } catch (err) {
+      console.error('Wishlist update failed:', err);
+      throw err;
     }
   };
 
-  // Saved Products actions
+  // Saved Products actions (Authentication Required)
   const isSaved = useCallback(
     (productId) => {
       const id = getId(productId);
@@ -243,33 +263,29 @@ export const AuthProvider = ({ children }) => {
 
   const toggleSaved = async (product) => {
     const id = getId(product);
-    if (!id) return;
-    const currentlyIn = isSaved(id);
+    if (!id) return false;
 
-    if (token) {
-      try {
-        if (currentlyIn) {
-          const res = await api.removeFromSavedProducts(id);
-          if (res?.data) setSavedProducts(res.data);
-        } else {
-          const res = await api.addToSavedProducts(id);
-          if (res?.data) setSavedProducts(res.data);
-        }
-      } catch (err) {
-        console.error('Saved products update failed:', err);
-        throw err;
-      }
-    } else {
-      // Guest local state
-      let updated;
+    if (!token) {
+      requireAuth(
+        'Please sign in to save hardware items. Sign in or create an account to bookmark hardware components and specifications.',
+        'saved'
+      );
+      return false;
+    }
+
+    const currentlyIn = isSaved(id);
+    try {
       if (currentlyIn) {
-        updated = savedProducts.filter((item) => getId(item) !== id);
+        const res = await api.removeFromSavedProducts(id);
+        if (res?.data) setSavedProducts(res.data);
       } else {
-        const itemToAdd = typeof product === 'object' ? product : { id };
-        updated = [...savedProducts, itemToAdd];
+        const res = await api.addToSavedProducts(id);
+        if (res?.data) setSavedProducts(res.data);
       }
-      setSavedProducts(updated);
-      safeSetJson(GUEST_SAVED_KEY, updated);
+      return true;
+    } catch (err) {
+      console.error('Saved products update failed:', err);
+      throw err;
     }
   };
 
@@ -376,6 +392,9 @@ export const AuthProvider = ({ children }) => {
     savedProducts,
     recentlyViewed,
     comparisonList,
+    authPrompt,
+    requireAuth,
+    closeAuthPrompt,
     login,
     register,
     logout,

@@ -14,7 +14,8 @@ export const ProductCard = ({ product }) => {
     isSaved,
     addToCompare,
     removeFromCompare,
-    isInCompare
+    isInCompare,
+    token
   } = useAuth();
 
   if (!product) return null;
@@ -110,7 +111,7 @@ export const ProductCard = ({ product }) => {
                 ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30'
                 : 'bg-slate-950/70 text-slate-300 hover:text-rose-400 hover:bg-slate-900'
             }`}
-            title={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+            title={!token ? 'Sign in to add to Wishlist' : inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             aria-label={`Toggle wishlist for ${product.title}`}
           >
             <Heart className={`w-3.5 h-3.5 ${inWishlist ? 'fill-current' : ''}`} />
@@ -124,7 +125,7 @@ export const ProductCard = ({ product }) => {
                 ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/30'
                 : 'bg-slate-950/70 text-slate-300 hover:text-brand-400 hover:bg-slate-900'
             }`}
-            title={inSaved ? 'Remove from Saved' : 'Save Hardware'}
+            title={!token ? 'Sign in to save Hardware' : inSaved ? 'Remove from Saved' : 'Save Hardware'}
             aria-label={`Toggle saved for ${product.title}`}
           >
             <Bookmark className={`w-3.5 h-3.5 ${inSaved ? 'fill-current' : ''}`} />

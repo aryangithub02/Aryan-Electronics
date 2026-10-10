@@ -8,7 +8,7 @@ import EmptyState from '../components/common/EmptyState';
 import { formatCurrency, calculateDiscountPrice, formatRating, handleImageError } from '../utils/formatters';
 
 export const SavedProductsPage = () => {
-  const { savedProducts, toggleSaved, addToCompare, isInCompare } = useAuth();
+  const { savedProducts, toggleSaved, addToCompare, isInCompare, token } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -27,7 +27,17 @@ export const SavedProductsPage = () => {
         </p>
       </div>
 
-      {savedProducts.length === 0 ? (
+      {!token ? (
+        <div className="py-12">
+          <EmptyState
+            icon={Bookmark}
+            title="Sign In to View Saved Hardware"
+            description="You need to be signed in to save hardware components and view them here."
+            actionLabel="Sign In Now"
+            onAction={() => navigate('/login')}
+          />
+        </div>
+      ) : savedProducts.length === 0 ? (
         <div className="py-12">
           <EmptyState
             title="No Saved Hardware Found"
