@@ -1,0 +1,880 @@
+{
+  "batch": "second_batch_partial",
+  "completed_research_checks": 97,
+  "note": "All 97 products have been fully verified, enriched with commercial specifications and prices in INR, and appended to the master catalog aryan_electronics_products.json (IDs 101-197).",
+  "products": [
+    {
+      "id": 1,
+      "candidate_title": "Lenovo 300e Yoga Gen 4 Chromebook",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 101,
+      "sku": "AE-EDU-PRD-101"
+    },
+    {
+      "id": 2,
+      "candidate_title": "HP Fortis 14 G10 Chromebook",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 102,
+      "sku": "AE-EDU-PRD-102"
+    },
+    {
+      "id": 3,
+      "candidate_title": "ASUS BR1100FKA Chromebook",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 103,
+      "sku": "AE-EDU-PRD-103"
+    },
+    {
+      "id": 4,
+      "candidate_title": "Dell Latitude 3140 2-in-1",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 104,
+      "sku": "AE-EDU-PRD-104"
+    },
+    {
+      "id": 5,
+      "candidate_title": "Microsoft Surface Laptop Go 3",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 105,
+      "sku": "AE-EDU-PRD-105"
+    },
+    {
+      "id": 6,
+      "candidate_title": "Samsung Galaxy Tab S9",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 106,
+      "sku": "AE-EDU-PRD-106"
+    },
+    {
+      "id": 7,
+      "candidate_title": "Lenovo Tab P12",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 107,
+      "sku": "AE-EDU-PRD-107"
+    },
+    {
+      "id": 8,
+      "candidate_title": "Wacom One 13 touch pen display",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 108,
+      "sku": "AE-EDU-PRD-108"
+    },
+    {
+      "id": 9,
+      "candidate_title": "BenQ RP6504 interactive flat panel",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 109,
+      "sku": "AE-EDU-PRD-109"
+    },
+    {
+      "id": 10,
+      "candidate_title": "SMART Board MX275-V5 interactive display",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 110,
+      "sku": "AE-EDU-PRD-110"
+    },
+    {
+      "id": 11,
+      "candidate_title": "Epson DC-21 document camera",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 111,
+      "sku": "AE-EDU-PRD-111"
+    },
+    {
+      "id": 12,
+      "candidate_title": "Texas Instruments TI-Nspire CX II CAS graphing calculator",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 112,
+      "sku": "AE-EDU-PRD-112"
+    },
+    {
+      "id": 13,
+      "candidate_title": "Texas Instruments TI-84 Plus CE graphing calculator",
+      "sector": "Education",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 113,
+      "sku": "AE-EDU-PRD-113"
+    },
+    {
+      "id": 14,
+      "candidate_title": "Welch Allyn Spot Vital Signs 4400",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 114,
+      "sku": "AE-HLT-PRD-114"
+    },
+    {
+      "id": 15,
+      "candidate_title": "GE CARESCAPE B650 patient monitor",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 115,
+      "sku": "AE-HLT-PRD-115"
+    },
+    {
+      "id": 16,
+      "candidate_title": "Nihon Kohden Life Scope G5 patient monitor",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 116,
+      "sku": "AE-HLT-PRD-116"
+    },
+    {
+      "id": 17,
+      "candidate_title": "Philips PageWriter TC70 cardiograph",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 117,
+      "sku": "AE-HLT-PRD-117"
+    },
+    {
+      "id": 18,
+      "candidate_title": "ZOLL AED 3 defibrillator",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 118,
+      "sku": "AE-HLT-PRD-118"
+    },
+    {
+      "id": 19,
+      "candidate_title": "Philips Lumify portable ultrasound system",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 119,
+      "sku": "AE-HLT-PRD-119"
+    },
+    {
+      "id": 20,
+      "candidate_title": "Clarius PAL HD3 handheld ultrasound scanner",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 120,
+      "sku": "AE-HLT-PRD-120"
+    },
+    {
+      "id": 21,
+      "candidate_title": "Abbott i-STAT Alinity analyzer",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 121,
+      "sku": "AE-HLT-PRD-121"
+    },
+    {
+      "id": 22,
+      "candidate_title": "Roche Accu-Chek Guide Me glucose meter",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 122,
+      "sku": "AE-HLT-PRD-122"
+    },
+    {
+      "id": 23,
+      "candidate_title": "Omron HEM-7600T Intelli Wrap blood pressure monitor",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 123,
+      "sku": "AE-HLT-PRD-123"
+    },
+    {
+      "id": 24,
+      "candidate_title": "Dräger Infinity M540 patient monitor",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 124,
+      "sku": "AE-HLT-PRD-124"
+    },
+    {
+      "id": 25,
+      "candidate_title": "Mindray BeneHeart D3 defibrillator/monitor",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 125,
+      "sku": "AE-HLT-PRD-125"
+    },
+    {
+      "id": 26,
+      "candidate_title": "Masimo MightySat Rx pulse oximeter",
+      "sector": "Healthcare",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 126,
+      "sku": "AE-HLT-PRD-126"
+    },
+    {
+      "id": 27,
+      "candidate_title": "John Deere StarFire 7500 receiver",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 127,
+      "sku": "AE-AGR-PRD-127"
+    },
+    {
+      "id": 28,
+      "candidate_title": "John Deere G5 Universal Display",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 128,
+      "sku": "AE-AGR-PRD-128"
+    },
+    {
+      "id": 29,
+      "candidate_title": "Trimble NAV-900 guidance controller",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 129,
+      "sku": "AE-AGR-PRD-129"
+    },
+    {
+      "id": 30,
+      "candidate_title": "Topcon AGS-2 GNSS receiver",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 130,
+      "sku": "AE-AGR-PRD-130"
+    },
+    {
+      "id": 31,
+      "candidate_title": "Davis EnviroMonitor Gateway",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 131,
+      "sku": "AE-AGR-PRD-131"
+    },
+    {
+      "id": 32,
+      "candidate_title": "Pessl iMETOS 3.3 weather station",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 132,
+      "sku": "AE-AGR-PRD-132"
+    },
+    {
+      "id": 33,
+      "candidate_title": "Sentera 6X multispectral sensor",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 133,
+      "sku": "AE-AGR-PRD-133"
+    },
+    {
+      "id": 34,
+      "candidate_title": "MicaSense RedEdge-P multispectral camera",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 134,
+      "sku": "AE-AGR-PRD-134"
+    },
+    {
+      "id": 35,
+      "candidate_title": "Raven Hawkeye 2 nozzle control system",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 135,
+      "sku": "AE-AGR-PRD-135"
+    },
+    {
+      "id": 36,
+      "candidate_title": "Teralytic wireless soil probe",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 136,
+      "sku": "AE-AGR-PRD-136"
+    },
+    {
+      "id": 37,
+      "candidate_title": "Ag Leader InCommand 1200 display",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 137,
+      "sku": "AE-AGR-PRD-137"
+    },
+    {
+      "id": 38,
+      "candidate_title": "Raven Viper 4+ field computer",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 138,
+      "sku": "AE-AGR-PRD-138"
+    },
+    {
+      "id": 39,
+      "candidate_title": "John Deere HarvestLab 3000 crop sensor",
+      "sector": "Agriculture",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 139,
+      "sku": "AE-AGR-PRD-139"
+    },
+    {
+      "id": 40,
+      "candidate_title": "Google Nest Learning Thermostat (4th gen)",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 140,
+      "sku": "AE-HOM-PRD-140"
+    },
+    {
+      "id": 41,
+      "candidate_title": "Ring Video Doorbell Pro 2",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 141,
+      "sku": "AE-HOM-PRD-141"
+    },
+    {
+      "id": 42,
+      "candidate_title": "Aqara Camera Hub G3",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 142,
+      "sku": "AE-HOM-PRD-142"
+    },
+    {
+      "id": 43,
+      "candidate_title": "ecobee Smart Thermostat Premium",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 143,
+      "sku": "AE-HOM-PRD-143"
+    },
+    {
+      "id": 44,
+      "candidate_title": "eufy Robot Vacuum Omni S1 Pro",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 144,
+      "sku": "AE-HOM-PRD-144"
+    },
+    {
+      "id": 45,
+      "candidate_title": "Roborock S8 MaxV Ultra",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 145,
+      "sku": "AE-HOM-PRD-145"
+    },
+    {
+      "id": 46,
+      "candidate_title": "Dyson Purifier Big+Quiet Formaldehyde BP04",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 146,
+      "sku": "AE-HOM-PRD-146"
+    },
+    {
+      "id": 47,
+      "candidate_title": "Samsung Bespoke Jet Bot Combo AI",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 147,
+      "sku": "AE-HOM-PRD-147"
+    },
+    {
+      "id": 48,
+      "candidate_title": "Google Nest Protect (2nd gen)",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 148,
+      "sku": "AE-HOM-PRD-148"
+    },
+    {
+      "id": 49,
+      "candidate_title": "TP-Link Tapo C425 security camera",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 149,
+      "sku": "AE-HOM-PRD-149"
+    },
+    {
+      "id": 50,
+      "candidate_title": "Arlo Pro 5S 2K security camera",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 150,
+      "sku": "AE-HOM-PRD-150"
+    },
+    {
+      "id": 51,
+      "candidate_title": "Philips Hue Play HDMI Sync Box 8K",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 151,
+      "sku": "AE-HOM-PRD-151"
+    },
+    {
+      "id": 52,
+      "candidate_title": "SwitchBot Hub 2",
+      "sector": "Home",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 152,
+      "sku": "AE-HOM-PRD-152"
+    },
+    {
+      "id": 53,
+      "candidate_title": "Siemens SIMATIC S7-1500 CPU 1511-1 PN",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 153,
+      "sku": "AE-IND-PRD-153"
+    },
+    {
+      "id": 54,
+      "candidate_title": "Mitsubishi MELSEC iQ-F FX5U-32MR/ES",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 154,
+      "sku": "AE-IND-PRD-154"
+    },
+    {
+      "id": 55,
+      "candidate_title": "Rockwell ControlLogix 5580 1756-L81E",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 155,
+      "sku": "AE-IND-PRD-155"
+    },
+    {
+      "id": 56,
+      "candidate_title": "Schneider Electric Altivar Process ATV630",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 156,
+      "sku": "AE-IND-PRD-156"
+    },
+    {
+      "id": 57,
+      "candidate_title": "Omron NX1P2-1040DT controller",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 157,
+      "sku": "AE-IND-PRD-157"
+    },
+    {
+      "id": 58,
+      "candidate_title": "Cognex DataMan 370 barcode reader",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 158,
+      "sku": "AE-IND-PRD-158"
+    },
+    {
+      "id": 59,
+      "candidate_title": "SICK microScan3 Pro safety laser scanner",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 159,
+      "sku": "AE-IND-PRD-159"
+    },
+    {
+      "id": 60,
+      "candidate_title": "FLIR A50 thermal camera",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 160,
+      "sku": "AE-IND-PRD-160"
+    },
+    {
+      "id": 61,
+      "candidate_title": "WAGO PFC200 750-8212 controller",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 161,
+      "sku": "AE-IND-PRD-161"
+    },
+    {
+      "id": 62,
+      "candidate_title": "Phoenix Contact QUINT4-PS/1AC/24DC/10 power supply",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 162,
+      "sku": "AE-IND-PRD-162"
+    },
+    {
+      "id": 63,
+      "candidate_title": "Advantech UNO-2271G industrial computer",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 163,
+      "sku": "AE-IND-PRD-163"
+    },
+    {
+      "id": 64,
+      "candidate_title": "Emerson Rosemount 3051S pressure transmitter",
+      "sector": "Industrial",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 164,
+      "sku": "AE-IND-PRD-164"
+    },
+    {
+      "id": 65,
+      "candidate_title": "Autel MaxiCOM MK808S diagnostic scanner",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 165,
+      "sku": "AE-AUT-PRD-165"
+    },
+    {
+      "id": 66,
+      "candidate_title": "Garmin zumo XT2 motorcycle navigator",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 166,
+      "sku": "AE-AUT-PRD-166"
+    },
+    {
+      "id": 67,
+      "candidate_title": "Nextbase iQ smart dash cam",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 167,
+      "sku": "AE-AUT-PRD-167"
+    },
+    {
+      "id": 68,
+      "candidate_title": "BlackVue DR770X-2CH dash cam",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 168,
+      "sku": "AE-AUT-PRD-168"
+    },
+    {
+      "id": 69,
+      "candidate_title": "NOCO Boost X GBX55 jump starter",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 169,
+      "sku": "AE-AUT-PRD-169"
+    },
+    {
+      "id": 70,
+      "candidate_title": "OBDLink CX Bluetooth OBD2 adapter",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 170,
+      "sku": "AE-AUT-PRD-170"
+    },
+    {
+      "id": 71,
+      "candidate_title": "Cobra RAD 700i radar detector",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 171,
+      "sku": "AE-AUT-PRD-171"
+    },
+    {
+      "id": 72,
+      "candidate_title": "Thinkware Q200 dash cam",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 172,
+      "sku": "AE-AUT-PRD-172"
+    },
+    {
+      "id": 73,
+      "candidate_title": "Garmin DriveSmart 76 navigator",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 173,
+      "sku": "AE-AUT-PRD-173"
+    },
+    {
+      "id": 74,
+      "candidate_title": "Veepeak OBDCheck BLE+ diagnostic adapter",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 174,
+      "sku": "AE-AUT-PRD-174"
+    },
+    {
+      "id": 75,
+      "candidate_title": "Garmin BC 50 wireless backup camera",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 175,
+      "sku": "AE-AUT-PRD-175"
+    },
+    {
+      "id": 76,
+      "candidate_title": "Bouncie GPS vehicle tracker",
+      "sector": "Automotive",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 176,
+      "sku": "AE-AUT-PRD-176"
+    },
+    {
+      "id": 77,
+      "candidate_title": "Brother MFC-L8395CDW color laser all-in-one printer",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 177,
+      "sku": "AE-OFF-PRD-177"
+    },
+    {
+      "id": 78,
+      "candidate_title": "Epson DS-790WN document scanner",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 178,
+      "sku": "AE-OFF-PRD-178"
+    },
+    {
+      "id": 79,
+      "candidate_title": "Canon MAXIFY GX7020 printer",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 179,
+      "sku": "AE-OFF-PRD-179"
+    },
+    {
+      "id": 80,
+      "candidate_title": "Dell Pro 24 Plus P2425HE monitor",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 180,
+      "sku": "AE-OFF-PRD-180"
+    },
+    {
+      "id": 81,
+      "candidate_title": "Jabra Speak2 75 speakerphone",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 181,
+      "sku": "AE-OFF-PRD-181"
+    },
+    {
+      "id": 82,
+      "candidate_title": "Logitech Zone Wireless 2 headset",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 182,
+      "sku": "AE-OFF-PRD-182"
+    },
+    {
+      "id": 83,
+      "candidate_title": "HP E27m G4 QHD USB-C conferencing monitor",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 183,
+      "sku": "AE-OFF-PRD-183"
+    },
+    {
+      "id": 84,
+      "candidate_title": "Synology DiskStation DS923+ NAS",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 184,
+      "sku": "AE-OFF-PRD-184"
+    },
+    {
+      "id": 85,
+      "candidate_title": "Epson EcoTank ET-4850 all-in-one printer",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 185,
+      "sku": "AE-OFF-PRD-185"
+    },
+    {
+      "id": 86,
+      "candidate_title": "Lenovo ThinkStation P3 Tiny workstation",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 186,
+      "sku": "AE-OFF-PRD-186"
+    },
+    {
+      "id": 87,
+      "candidate_title": "Canon imageFORMULA DR-C225 II scanner",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 187,
+      "sku": "AE-OFF-PRD-187"
+    },
+    {
+      "id": 88,
+      "candidate_title": "APC Back-UPS Pro BR1500MS2",
+      "sector": "Office",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 188,
+      "sku": "AE-OFF-PRD-188"
+    },
+    {
+      "id": 89,
+      "candidate_title": "Sony PlayStation 5 Pro",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 189,
+      "sku": "AE-ENT-PRD-189"
+    },
+    {
+      "id": 90,
+      "candidate_title": "Nintendo Switch 2",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 190,
+      "sku": "AE-ENT-PRD-190"
+    },
+    {
+      "id": 91,
+      "candidate_title": "Sony BRAVIA XR A95L QD-OLED television",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 191,
+      "sku": "AE-ENT-PRD-191"
+    },
+    {
+      "id": 92,
+      "candidate_title": "Panasonic LUMIX S5II mirrorless camera",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 192,
+      "sku": "AE-ENT-PRD-192"
+    },
+    {
+      "id": 93,
+      "candidate_title": "DJI Osmo Action 5 Pro",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 193,
+      "sku": "AE-ENT-PRD-193"
+    },
+    {
+      "id": 94,
+      "candidate_title": "Insta360 X5 360 camera",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 194,
+      "sku": "AE-ENT-PRD-194"
+    },
+    {
+      "id": 95,
+      "candidate_title": "Bose Smart Ultra Soundbar",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 195,
+      "sku": "AE-ENT-PRD-195"
+    },
+    {
+      "id": 96,
+      "candidate_title": "Denon AVR-X3800H AV receiver",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 196,
+      "sku": "AE-ENT-PRD-196"
+    },
+    {
+      "id": 97,
+      "candidate_title": "Yamaha RX-A4A AV receiver",
+      "sector": "Entertainment",
+      "research_task_status": "completed",
+      "full_catalog_record_available": true,
+      "catalog_product_id": 197,
+      "sku": "AE-ENT-PRD-197"
+    }
+  ]
+}

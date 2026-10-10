@@ -1,0 +1,139 @@
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Bookmark, Trash2, Scale, ArrowRight, Star, Cpu } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import Button from '../components/common/Button';
+import Badge from '../components/common/Badge';
+import EmptyState from '../components/common/EmptyState';
+import { formatCurrency, calculateDiscountPrice, formatRating, handleImageError } from '../utils/formatters';
+
+export const SavedProductsPage = () => {
+  const { savedProducts, toggleSaved, addToCompare, isInCompare } = useAuth();
+  const navigate = useNavigate();
+
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-mono">
+          <Bookmark className="w-3.5 h-3.5 fill-brand-500/30" />
+          <span>Bookmarked Hardware Specifications</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Saved <span className="gradient-text">Hardware</span>
+        </h1>
+        <p className="text-sm text-slate-300 max-w-2xl">
+          Quickly access bookmarked electronics for engineering evaluation, BOM drafting, and ongoing price monitoring.
+        </p>
+      </div>
+
+      {savedProducts.length === 0 ? (
+        <div className="py-12">
+          <EmptyState
+            title="No Saved Hardware Found"
+            description="You have not saved any electronic components or products yet. Save items using the bookmark icon on product cards or detail pages."
+            actionLabel="Discover Products"
+            onAction={() => navigate('/products')}
+          />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {savedProducts.map((product) => {
+            const prodId = product.id || product._id;
+            const hasPrice = product.price !== null && product.price !== undefined;
+            const discountedPrice = hasPrice ? calculateDiscountPrice(product.price, product.discountPercentage) : null;
+            const inCompare = isInCompare(prodId);
+
+            return (
+              <div
+                key={prodId}
+                className="glass-card rounded-2xl overflow-hidden flex flex-col border border-slate-800 hover:border-brand-500/40 transition-all duration-300 group"
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] bg-slate-900/95 overflow-hidden flex items-center justify-center border-b border-slate-800/80 p-4">
+                  <img
+                    src={product.thumbnail || product.images?.[0]}
+                    alt={product.title}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    onError={handleImageError}
+                  />
+                  <div className="absolute top-3 left-3">
+                    <Badge variant="cyan" size="sm">{product.sector}</Badge>
+                  </div>
+                  <button
+                    onClick={() => toggleSaved(prodId)}
+                    className="absolute top-3 right-3 p-2 rounded-xl bg-slate-950/80 text-brand-400 hover:bg-brand-600 hover:text-white transition-colors"
+                    title="Remove from Saved"
+                    aria-label={`Unsave ${product.title}`}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Details */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-400 font-mono uppercase">{product.brand}</span>
+                      <div className="flex items-center gap-1 text-amber-400 font-medium">
+                        <Star className="w-3.5 h-3.5 fill-amber-400" />
+                        <span>{formatRating(product.rating)}</span>
+                      </div>
+                    </div>
+
+                    <h3 className="font-semibold text-slate-100 text-sm group-hover:text-cyan-400 transition-colors line-clamp-2">
+                      <Link to={`/products/${prodId}`}>
+                        {product.title}
+                      </Link>
+                    </h3>
+
+                    <p className="text-xs text-slate-400 font-mono">
+                      SKU: {product.SKU || 'N/A'}
+                    </p>
+                  </div>
+
+                  {/* Pricing & Actions */}
+                  <div className="pt-3 border-t border-slate-800/80 space-y-3">
+                    <div className="flex items-baseline gap-2">
+                      <span className={`font-bold text-white font-mono ${hasPrice ? 'text-lg' : 'text-sm text-cyan-300'}`}>
+                        {hasPrice ? formatCurrency(discountedPrice) : 'Price on Request'}
+                      </span>
+                      {hasPrice && product.discountPercentage > 0 && (
+                        <span className="text-xs text-slate-500 line-through">
+                          {formatCurrency(product.price)}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant={inCompare ? 'secondary' : 'outline'}
+                        size="sm"
+                        className="flex-1 text-xs"
+                        icon={Scale}
+                        onClick={() => inCompare ? navigate('/compare') : addToCompare(product)}
+                      >
+                        {inCompare ? 'In Compare' : 'Compare'}
+                      </Button>
+
+                      <Link
+                        to={`/products/${prodId}`}
+                        className="p-2 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white transition-colors"
+                        aria-label="View Product Details"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default SavedProductsPage;

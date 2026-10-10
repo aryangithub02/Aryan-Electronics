@@ -1,0 +1,34 @@
+{
+  "name": "aryan-electronics",
+  "version": "0.1.0",
+  "description": "Aryan Electronics - Electronics product aggregation and discovery platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "start": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm --prefix server start\" \"npm --prefix client start\"",
+    "start:server": "npm --prefix server start",
+    "start:client": "npm --prefix client start",
+    "build": "npm --prefix client run build",
+    "test": "cross-env CI=true npm --prefix server test && cross-env CI=true npm --prefix client test",
+    "test:server": "npm --prefix server test",
+    "test:client": "npm --prefix client test",
+    "seed": "npm --prefix server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
+  },
+  "keywords": [
+    "electronics",
+    "aggregation",
+    "discovery",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "Aryan Electronics Team",
+  "license": "ISC"
+}
