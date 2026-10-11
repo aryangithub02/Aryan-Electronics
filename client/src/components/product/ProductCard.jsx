@@ -110,6 +110,7 @@ export const ProductCard = ({ product }) => {
           alt={product.title}
           className="w-full h-full object-contain"
           loading="lazy"
+          referrerPolicy="no-referrer"
           onError={handleImageError}
         />
       </Link>

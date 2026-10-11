@@ -353,6 +353,7 @@ export const SearchAutocomplete = ({
                       src={prod.thumbnail || prod.images?.[0]}
                       alt={prod.title}
                       className="w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
                       onError={handleImageError}
                     />
                   </div>

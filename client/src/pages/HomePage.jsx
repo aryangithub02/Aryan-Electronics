@@ -281,6 +281,8 @@ export const HomePage = () => {
                   src={heroSlides[0].image}
                   alt="Electronics Showcase"
                   className="w-full h-full object-contain"
+                  referrerPolicy="no-referrer"
+                  onError={handleImageError}
                 />
               </div>
             </div>
@@ -313,6 +315,8 @@ export const HomePage = () => {
                     src={sec.image}
                     alt={sec.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    referrerPolicy="no-referrer"
+                    onError={handleImageError}
                   />
                 </div>
 

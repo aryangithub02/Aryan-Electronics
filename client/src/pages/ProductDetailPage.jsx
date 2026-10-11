@@ -153,6 +153,7 @@ export const ProductDetailPage = () => {
               src={selectedImage || product.thumbnail}
               alt={product.title}
               className="w-full h-full object-contain"
+              referrerPolicy="no-referrer"
               onError={handleImageError}
             />
             {hasDiscount && (
@@ -172,11 +173,11 @@ export const ProductDetailPage = () => {
                   onClick={() => setSelectedImage(img)}
                   className={`w-20 h-16 rounded-xl overflow-hidden flex-shrink-0 border transition-all ${
                     selectedImage === img
-                      ? 'border-brand-500 ring-2 ring-brand-500/30'
-                      : 'border-slate-800 opacity-60 hover:opacity-100'
+                      ? 'border-blue-500 ring-2 ring-blue-500/30'
+                      : 'border-slate-200 opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-contain p-1" onError={handleImageError} />
+                  <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-contain p-1" referrerPolicy="no-referrer" onError={handleImageError} />
                 </button>
               ))}
             </div>
