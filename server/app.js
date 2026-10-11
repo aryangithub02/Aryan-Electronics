@@ -14,6 +14,7 @@ const compareRoutes = require('./routes/compareRoutes');
 const aggregationRoutes = require('./routes/aggregationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
+const docsRoutes = require('./routes/docsRoutes');
 const path = require('path');
 const errorHandler = require('./middleware/errorHandler');
 const notFoundHandler = require('./middleware/notFoundHandler');
@@ -103,6 +104,8 @@ app.get('/', (req, res) => {
     phase: 'Phase 5 - Production-Ready Platform',
     status: 'online',
     endpoints: {
+      docs: '/docs',
+      openapi: '/docs/openapi.json',
       health: '/api/health',
       products: '/api/products',
       sectors: '/api/products/sectors',
@@ -134,6 +137,10 @@ app.get('/', (req, res) => {
     }
   });
 });
+
+// Documentation Routes (Interactive Developer Portal & OpenAPI 3.0 Spec)
+app.use('/docs', docsRoutes);
+app.use('/api/docs', docsRoutes);
 
 // Mount Routes
 app.use('/api/health', healthRoutes);

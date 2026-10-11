@@ -8,6 +8,10 @@
       "destination": "/api/index.js"
     },
     {
+      "source": "/docs(.*)",
+      "destination": "/api/index.js"
+    },
+    {
       "source": "/((?!static|images|favicon\\.svg).*)",
       "destination": "/index.html"
     }
