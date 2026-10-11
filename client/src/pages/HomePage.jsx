@@ -30,6 +30,7 @@ export const HomePage = () => {
   const [todaysDeals, setTodaysDeals] = useState([]);
   const [sectorCounts, setSectorCounts] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Exact 8 sectors from dataset
   const baseSectors = [
@@ -159,140 +160,150 @@ export const HomePage = () => {
     };
   }, []);
 
-  const heroSlides = [
+  const heroBanners = [
     {
-      tag: 'YOUR ONE-STOP DESTINATION FOR ELECTRONICS',
-      titlePrefix: 'Discover. Compare. ',
-      titleHighlight: 'Choose Better.',
-      desc: 'Explore top electronics products across multiple sectors with detailed information, real prices and seller options.',
-      image: '/images/hero_gadgets.jpg'
+      id: 'upgrade-tech',
+      title: 'Upgrade Your Tech',
+      desc: 'Discover smarter electronics for every sector',
+      image: '/images/banners/banner_upgrade_tech.png',
+      alt: 'Upgrade Your Tech - Discover smarter electronics for every sector',
+      link: '/products'
+    },
+    {
+      id: 'better-you',
+      title: 'Electronics for a Better You',
+      desc: 'Smarter living starts here with trusted brands across 8+ sectors',
+      image: '/images/banners/banner_better_you.png',
+      alt: 'Electronics for a Better You - Smarter Living Starts Here',
+      link: '/products'
     }
   ];
 
+  // Auto-rotate hero banners every 5.5 seconds unless user hovers
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroBanners.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [isPaused, heroBanners.length]);
+
   return (
     <div className="space-y-8 sm:space-y-10 pb-16 font-sans">
-      {/* 1. Hero Banner Section */}
+      {/* 1. Hero Banner Carousel Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#071224] via-[#091b3b] to-[#040e21] border border-blue-900/40 shadow-2xl text-white">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-10 left-10 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+        <h1 className="sr-only">Discover, Compare & Aggregate Electronic Innovations</h1>
 
-          {/* Carousel Left / Right Arrows */}
+        <div
+          className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/90 bg-slate-950 group"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Banner Slides */}
+          <div className="relative aspect-[16/7] sm:aspect-[21/8] lg:aspect-[2.85/1] w-full overflow-hidden">
+            {heroBanners.map((banner, idx) => (
+              <Link
+                key={banner.id}
+                to={banner.link}
+                aria-label={banner.title}
+                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                  idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
+              >
+                <img
+                  src={banner.image}
+                  alt={banner.alt}
+                  className="w-full h-full object-cover sm:object-fill"
+                  referrerPolicy="no-referrer"
+                  onError={handleImageError}
+                />
+              </Link>
+            ))}
+          </div>
+
+          {/* Carousel Left / Right Navigation Arrows */}
           <button
             type="button"
-            onClick={() => setCurrentSlide((prev) => (prev > 0 ? prev - 1 : 0))}
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-800 text-white flex items-center justify-center border border-white/10 backdrop-blur-sm transition-all focus:outline-none"
-            aria-label="Previous slide"
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentSlide((prev) => (prev > 0 ? prev - 1 : heroBanners.length - 1));
+            }}
+            className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white flex items-center justify-center border border-white/20 backdrop-blur-md shadow-lg transition-all opacity-80 hover:opacity-100 hover:scale-105 focus:outline-none"
+            aria-label="Previous banner"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
             type="button"
-            onClick={() => setCurrentSlide((prev) => (prev < heroSlides.length - 1 ? prev + 1 : 0))}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-800 text-white flex items-center justify-center border border-white/10 backdrop-blur-sm transition-all focus:outline-none"
-            aria-label="Next slide"
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentSlide((prev) => (prev < heroBanners.length - 1 ? prev + 1 : 0));
+            }}
+            className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white flex items-center justify-center border border-white/20 backdrop-blur-md shadow-lg transition-all opacity-80 hover:opacity-100 hover:scale-105 focus:outline-none"
+            aria-label="Next banner"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[380px] sm:min-h-[420px] p-6 sm:p-10 lg:p-12 gap-8 relative z-10">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-5">
-              {/* Uppercase Tag */}
-              <div className="inline-block text-[11px] font-bold tracking-widest text-cyan-400 uppercase font-sans">
-                {heroSlides[0].tag}
-              </div>
+          {/* Carousel Dots */}
+          <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 bg-slate-900/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+            {heroBanners.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentSlide(idx)}
+                className={`transition-all duration-300 rounded-full ${
+                  idx === currentSlide
+                    ? 'w-7 h-2 bg-cyan-400 shadow-sm shadow-cyan-400/50'
+                    : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
-              {/* Massive Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15]">
-                {heroSlides[0].titlePrefix}
-                <span className="text-cyan-400">
-                  {heroSlides[0].titleHighlight}
-                </span>
-                <span className="sr-only">Discover, Compare & Aggregate Electronic Innovations</span>
-              </h1>
-
-              {/* Subtext */}
-              <p className="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed">
-                {heroSlides[0].desc}
-              </p>
-
-              {/* Explore Button */}
-              <div className="pt-2">
-                <Link
-                  to="/products"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm shadow-lg hover:shadow-cyan-500/20 transition-all hover:scale-105"
-                >
-                  <span>Explore Products</span>
-                  <ArrowRight className="w-4 h-4 text-slate-950" />
-                </Link>
-              </div>
-
-              {/* Value Propositions Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-700/60 max-w-2xl">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                    <Layers className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white leading-tight">Wide Range</p>
-                    <p className="text-[10px] text-slate-400">Across 8+ Sectors</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                    <TrendingDown className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white leading-tight">Compare Prices</p>
-                    <p className="text-[10px] text-slate-400">Multiple Sellers</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white leading-tight">Trusted Information</p>
-                    <p className="text-[10px] text-slate-400">Real Products & Specs</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 flex-shrink-0">
-                    <Zap className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white leading-tight">Find What Fits You</p>
-                    <p className="text-[10px] text-slate-400">Smarter Choices</p>
-                  </div>
-                </div>
-              </div>
+        {/* Value Propositions Strip */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 sm:pt-5">
+          <div className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs hover:border-blue-200 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+              <Layers className="w-4 h-4" />
             </div>
-
-            {/* Right Graphic Showcase */}
-            <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-full max-w-lg aspect-[16/10] overflow-hidden rounded-xl shadow-2xl">
-                <img
-                  src={heroSlides[0].image}
-                  alt="Electronics Showcase"
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                  onError={handleImageError}
-                />
-              </div>
+            <div>
+              <p className="text-xs font-bold text-slate-800 leading-tight">Wide Range</p>
+              <p className="text-[11px] text-slate-500">Across 8+ Sectors</p>
             </div>
           </div>
 
-          {/* Carousel Dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
-            <span className="w-2.5 h-1.5 rounded-full bg-cyan-400" />
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
+          <div className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs hover:border-emerald-200 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+              <TrendingDown className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-800 leading-tight">Compare & Save</p>
+              <p className="text-[11px] text-slate-500">Find the Best Deals</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs hover:border-amber-200 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-800 leading-tight">Trusted Products</p>
+              <p className="text-[11px] text-slate-500">From Top Brands</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs hover:border-cyan-200 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 flex-shrink-0">
+              <Zap className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-800 leading-tight">Smarter Choices</p>
+              <p className="text-[11px] text-slate-500">Find What Fits You</p>
+            </div>
           </div>
         </div>
       </section>
@@ -440,7 +451,24 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 4. Popular Brands Section */}
+      {/* 4. Mid-Page Showcase Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Link
+          to="/products"
+          aria-label="Electronics for a Better You - Explore Now"
+          className="block relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[16/7] sm:aspect-[21/8] lg:aspect-[2.85/1] w-full group hover:shadow-2xl transition-all"
+        >
+          <img
+            src="/images/banners/banner_better_you.png"
+            alt="Electronics for a Better You - Smarter Living Starts Here"
+            className="w-full h-full object-cover sm:object-fill group-hover:scale-[1.01] transition-transform duration-500"
+            referrerPolicy="no-referrer"
+            onError={handleImageError}
+          />
+        </Link>
+      </section>
+
+      {/* 5. Popular Brands Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <BrandLogos />
       </section>
