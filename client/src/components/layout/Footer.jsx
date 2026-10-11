@@ -1,97 +1,165 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cpu, ShieldCheck, Zap } from 'lucide-react';
+import { ShieldCheck, Zap, Truck, Headphones, RotateCcw } from 'lucide-react';
+import AryanLogo from '../common/AryanLogo';
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-slate-800/80 bg-slate-950/80 pt-16 pb-12 mt-20">
+    <footer className="border-t border-slate-800/80 bg-[#090e1a] text-slate-400 pt-16 pb-12 mt-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/60">
+        {/* Trust Badges Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 border-b border-slate-800 text-slate-300">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center flex-shrink-0">
+              <Truck className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">Free & Fast Delivery</p>
+              <p className="text-xs text-slate-400">On verified orders nationwide</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cyan-600/10 text-cyan-400 flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">100% Genuine Specs</p>
+              <p className="text-xs text-slate-400">Verified manufacturer data</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-600/10 text-emerald-400 flex items-center justify-center flex-shrink-0">
+              <Zap className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">Multi-Seller Compare</p>
+              <p className="text-xs text-slate-400">Real-time best price engine</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-purple-600/10 text-purple-400 flex items-center justify-center flex-shrink-0">
+              <Headphones className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">Expert Tech Support</p>
+              <p className="text-xs text-slate-400">24/7 dedicated assistance</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-12 border-b border-slate-800">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-cyan-400 p-0.5 shadow-md">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                  <Cpu className="w-4 h-4 text-cyan-400" />
-                </div>
-              </div>
-              <span className="text-xl font-extrabold text-white">
-                Aryan <span className="gradient-text">Electronics</span>
-              </span>
-            </div>
+            <AryanLogo />
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Unified electronics aggregation and discovery engine across consumer, industrial, IoT, and embedded computing domains.
+              Aryan Electronics is your one-stop aggregation platform to discover, compare, and choose top electronics across Education, Healthcare, Agriculture, Home, Industrial, Automotive, Office, and Entertainment.
             </p>
-            <div className="flex items-center gap-3 text-xs text-slate-400 pt-2 font-mono">
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
-                Multi-Seller Verification
-              </span>
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800">
-                <Zap className="w-3.5 h-3.5 text-amber-400" />
-                Real-Time Specs
-              </span>
+            <div className="text-xs text-slate-500 font-mono">
+              <p>Trusted across 8+ specialized tech domains.</p>
             </div>
           </div>
 
           {/* Sectors */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono">
-              Sectors
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+              Top Sectors
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <Link to="/products?sector=Computing" className="hover:text-cyan-400 transition-colors">
-                  Computing & Gaming
+                <Link to="/products?sector=Education" className="hover:text-blue-400 transition-colors">
+                  Education
                 </Link>
               </li>
               <li>
-                <Link to="/products?sector=Consumer" className="hover:text-cyan-400 transition-colors">
-                  Consumer Electronics
+                <Link to="/products?sector=Healthcare" className="hover:text-blue-400 transition-colors">
+                  Healthcare
                 </Link>
               </li>
               <li>
-                <Link to="/products?sector=Smart+Home" className="hover:text-cyan-400 transition-colors">
-                  Smart Home & IoT
+                <Link to="/products?sector=Agriculture" className="hover:text-blue-400 transition-colors">
+                  Agriculture
                 </Link>
               </li>
               <li>
-                <Link to="/products?sector=Audio" className="hover:text-cyan-400 transition-colors">
-                  Audio & Wearables
+                <Link to="/products?sector=Home" className="hover:text-blue-400 transition-colors">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link to="/products?sector=Industrial" className="hover:text-cyan-400 transition-colors">
-                  Industrial & Automation
+                <Link to="/products?sector=Industrial" className="hover:text-blue-400 transition-colors">
+                  Industrial
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?sector=Automotive" className="hover:text-blue-400 transition-colors">
+                  Automotive
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono">
-              Explore
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+              Quick Links
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <Link to="/" className="hover:text-white transition-colors">
-                  Home Overview
+                  Home
                 </Link>
               </li>
               <li>
                 <Link to="/sectors" className="hover:text-white transition-colors">
-                  Sector Directory
+                  Explore by Sector
                 </Link>
               </li>
               <li>
                 <Link to="/products" className="hover:text-white transition-colors">
-                  Product Catalog
+                  All Products
                 </Link>
               </li>
               <li>
                 <Link to="/compare" className="hover:text-white transition-colors">
-                  Compare Engine
+                  Comparison Matrix
+                </Link>
+              </li>
+              <li>
+                <Link to="/wishlist" className="hover:text-white transition-colors">
+                  My Wishlist
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Customer Care */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+              Help & Support
+            </h4>
+            <ul className="space-y-2 text-sm text-slate-400">
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white transition-colors">
+                  Contact Support
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
                 </Link>
               </li>
             </ul>
@@ -101,7 +169,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} Aryan Electronics. All rights reserved.</p>
-          <p className="text-slate-500">Premium Hardware Discovery & Aggregation</p>
+          <p className="text-slate-400">Discover. Compare. Choose Better.</p>
         </div>
       </div>
     </footer>

@@ -256,18 +256,18 @@ export const ComparePage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 font-sans">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-mono">
             <Scale className="w-3.5 h-3.5" />
             <span>Fair Hardware Specification Matrix (2–4 Devices)</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Product <span className="gradient-text">Comparison</span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Product <span className="text-blue-600">Comparison</span>
           </h1>
-          <p className="text-sm text-slate-300 max-w-2xl">
+          <p className="text-sm text-slate-600 max-w-2xl">
             Compare electronic hardware side-by-side with genuine category alignment, balanced specification parity, and verified seller price tracking.
             {isAuthenticated ? ' Synchronized with your account.' : ' Guest session active.'}
           </p>

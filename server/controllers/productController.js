@@ -175,7 +175,8 @@ const getAllProducts = async (req, res, next) => {
         pagination: {
           page: memoryResult.page,
           limit: memoryResult.limit,
-          totalPages: memoryResult.totalPages
+          totalPages: memoryResult.totalPages,
+          total: memoryResult.total
         },
         data: memoryResult.items
       });
@@ -279,7 +280,8 @@ const getAllProducts = async (req, res, next) => {
       pagination: {
         page: pageNum,
         limit: limitNum,
-        totalPages: Math.ceil(total / limitNum)
+        totalPages: Math.ceil(total / limitNum),
+        total
       },
       data: paginatedProducts
     });

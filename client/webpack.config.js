@@ -59,6 +59,9 @@ module.exports = (env, argv) => {
       historyApiFallback: true,
       hot: true,
       open: false,
+      static: {
+        directory: path.join(__dirname, 'public'),
+      },
       proxy: [
         {
           context: ['/api'],

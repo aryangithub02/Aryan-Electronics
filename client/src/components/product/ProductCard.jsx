@@ -1,17 +1,18 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Star, CheckCircle2, ArrowRight, Heart, Bookmark, Scale } from 'lucide-react';
-import Badge from '../common/Badge';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Star, Heart, ShoppingCart, Scale, Check } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import { formatCurrency, calculateDiscountPrice, formatRating, handleImageError } from '../../utils/formatters';
 
 export const ProductCard = ({ product }) => {
-  const navigate = useNavigate();
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  const { addToCart } = useCart();
+
   const {
     toggleWishlist,
     isInWishlist,
-    toggleSaved,
-    isSaved,
     addToCompare,
     removeFromCompare,
     isInCompare,
@@ -26,19 +27,12 @@ export const ProductCard = ({ product }) => {
   const hasDiscount = hasPrice && product.discountPercentage > 0;
 
   const inWishlist = isInWishlist(prodId);
-  const inSaved = isSaved(prodId);
   const inCompare = isInCompare(prodId);
 
   const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     toggleWishlist(product);
-  };
-
-  const handleSavedClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleSaved(product);
   };
 
   const handleCompareClick = (e) => {
@@ -51,147 +45,135 @@ export const ProductCard = ({ product }) => {
     }
   };
 
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+    setIsAddedToCart(true);
+    setTimeout(() => setIsAddedToCart(false), 1500);
+  };
+
+  const reviewCount = product.reviewsCount;
+
   return (
-    <div className="glass-card rounded-2xl overflow-hidden flex flex-col group border border-slate-800/80 hover:border-brand-500/40 transition-all duration-300 relative">
-      {/* Thumbnail Container */}
-      <div className="relative aspect-[4/3] bg-slate-900/95 overflow-hidden flex items-center justify-center p-4 border-b border-slate-800/60">
-        <img
-          src={product.thumbnail || product.images?.[0]}
-          alt={product.title}
-          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-          onError={handleImageError}
-        />
+    <div className="bg-white rounded-2xl border border-slate-200/90 hover:border-blue-300 p-3.5 sm:p-4 shadow-2xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group font-sans overflow-hidden">
+      {/* Top Badges & Actions */}
+      <div className="flex items-center justify-between z-10">
+        {/* Discount Badge */}
+        {hasDiscount ? (
+          <span className="bg-[#e02424] text-white text-[11px] font-bold px-2 py-0.5 rounded-sm shadow-2xs uppercase tracking-tight">
+            {Math.round(product.discountPercentage)}% OFF
+          </span>
+        ) : (
+          <span />
+        )}
 
-        {/* Sector Badge Top Left */}
-        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
-          <Badge variant="cyan" size="sm">
-            {product.sector}
-          </Badge>
-          {Array.isArray(product.badges) && product.badges.length > 0 && (
-            <span className={`backdrop-blur-sm text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded shadow ${
-              product.badges[0] === 'Best Rated'
-                ? 'bg-amber-600/90'
-                : product.badges[0] === 'Best Value'
-                ? 'bg-emerald-600/90'
-                : product.badges[0] === 'Lowest Price'
-                ? 'bg-teal-600/90'
-                : product.badges[0] === 'Premium Choice'
-                ? 'bg-indigo-600/90'
-                : 'bg-rose-600/90'
-            }`}>
-              ★ {product.badges[0]}
-            </span>
-          )}
-          {product.sellers && product.sellers.length > 1 && (
-            <span className="bg-emerald-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded shadow">
-              {product.sellers.length} Sellers
-            </span>
-          )}
-          {product.provider && product.provider !== 'local' && (
-            <span className="bg-purple-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded shadow uppercase">
-              {product.provider === 'dummyjson' ? 'DummyJSON' : product.provider}
-            </span>
-          )}
-        </div>
-
-        {/* Action Trays Top Right (Wishlist & Save) */}
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
-          {hasDiscount && (
-            <span className="bg-rose-500/90 backdrop-blur-sm text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md mr-1">
-              -{product.discountPercentage}%
-            </span>
-          )}
+        {/* Action Buttons: Wishlist & Compare */}
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={handleCompareClick}
+            className={`p-1.5 rounded-full transition-all ${
+              inCompare
+                ? 'bg-blue-100 text-blue-600'
+                : 'text-slate-400 hover:text-blue-600 hover:bg-slate-100'
+            }`}
+            title={inCompare ? 'Remove from Compare' : 'Add to Compare'}
+            aria-label={`Toggle compare for ${product.title}`}
+          >
+            <Scale className="w-4 h-4" />
+          </button>
 
           <button
             type="button"
             onClick={handleWishlistClick}
-            className={`p-1.5 rounded-lg backdrop-blur-md transition-all ${
+            className={`p-1.5 rounded-full transition-all ${
               inWishlist
-                ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30'
-                : 'bg-slate-950/70 text-slate-300 hover:text-rose-400 hover:bg-slate-900'
+                ? 'text-rose-500 fill-rose-500'
+                : 'text-slate-400 hover:text-rose-500 hover:bg-slate-100'
             }`}
             title={!token ? 'Sign in to add to Wishlist' : inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             aria-label={`Toggle wishlist for ${product.title}`}
           >
-            <Heart className={`w-3.5 h-3.5 ${inWishlist ? 'fill-current' : ''}`} />
-          </button>
-
-          <button
-            type="button"
-            onClick={handleSavedClick}
-            className={`p-1.5 rounded-lg backdrop-blur-md transition-all ${
-              inSaved
-                ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/30'
-                : 'bg-slate-950/70 text-slate-300 hover:text-brand-400 hover:bg-slate-900'
-            }`}
-            title={!token ? 'Sign in to save Hardware' : inSaved ? 'Remove from Saved' : 'Save Hardware'}
-            aria-label={`Toggle saved for ${product.title}`}
-          >
-            <Bookmark className={`w-3.5 h-3.5 ${inSaved ? 'fill-current' : ''}`} />
+            <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current text-rose-500' : ''}`} />
           </button>
         </div>
       </div>
 
-      {/* Card Details */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-        <div className="space-y-2">
-          {/* Brand, Score & Rating Row */}
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-400 font-medium tracking-wide uppercase font-mono">
-              {product.brand}
-            </span>
-            <div className="flex items-center gap-2">
-              {typeof product.discoveryScore === 'number' && (
-                <span
-                  className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
-                  title={`Discovery Score: ${product.discoveryScore}/100`}
-                >
-                  Score: {product.discoveryScore}
-                </span>
-              )}
-              <div className="flex items-center gap-1 text-amber-400 font-semibold bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">
-                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                <span>{formatRating(product.rating)}</span>
-              </div>
-            </div>
-          </div>
+      {/* Product Image */}
+      <Link
+        to={`/products/${prodId}`}
+        className="w-full aspect-square my-3 flex items-center justify-center overflow-hidden p-2 group-hover:scale-105 transition-transform duration-300"
+      >
+        <img
+          src={product.thumbnail || product.images?.[0]}
+          alt={product.title}
+          className="w-full h-full object-contain"
+          loading="lazy"
+          onError={handleImageError}
+        />
+      </Link>
 
-          {/* Title */}
-          <h3 className="font-semibold text-slate-100 text-base group-hover:text-cyan-400 transition-colors line-clamp-2">
-            <Link to={`/products/${prodId}`}>
-              {product.title}
-            </Link>
-          </h3>
+      {/* Product Information */}
+      <div className="space-y-1.5">
+        {/* Title */}
+        <h3 className="font-semibold text-slate-800 text-sm leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-blue-600 transition-colors">
+          <Link to={`/products/${prodId}`}>
+            {product.title}
+          </Link>
+        </h3>
 
-          {/* Description Preview */}
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
+        {/* Brand & Sector Breadcrumb matching Screenshot */}
+        <div className="flex items-center gap-1.5 text-xs text-slate-400 font-sans">
+          <span className="font-medium text-slate-600">{product.brand}</span>
+          <span>|</span>
+          <span className="text-slate-500 truncate">{product.sector}</span>
         </div>
 
-        {/* Footer: Price & Quick Action Toolbar */}
-        <div className="pt-3 border-t border-slate-800/60 flex items-center justify-between gap-2">
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className={`font-bold text-white tracking-tight ${hasPrice ? 'text-lg font-mono' : 'text-sm text-cyan-300'}`}>
-                {hasPrice ? formatCurrency(discountedPrice) : 'Price on Request'}
-              </span>
-              {hasDiscount && (
-                <span className="text-xs text-slate-500 line-through">
-                  {formatCurrency(product.price)}
-                </span>
-              )}
+        {/* Rating & Review Count */}
+        {product.rating !== undefined && product.rating !== null && (
+          <div className="flex items-center gap-1.5 pt-0.5">
+            <div className="flex items-center text-amber-400">
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             </div>
-            <div className="text-[11px] flex items-center gap-1 mt-0.5">
+            <span className="text-xs font-semibold text-slate-700">
+              {formatRating(product.rating)}
+            </span>
+            {reviewCount !== undefined && reviewCount !== null && (
+              <span className="text-xs text-slate-400">
+                ({reviewCount})
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Price & Cart Button Row */}
+        <div className="pt-2.5 flex items-end justify-between border-t border-slate-100 gap-2">
+          <div className="min-w-0 flex-1">
+            {hasPrice ? (
+              <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+                <span className="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight">
+                  {formatCurrency(discountedPrice)}
+                </span>
+                {hasDiscount && (
+                  <span className="text-xs text-slate-400 line-through leading-tight">
+                    {formatCurrency(product.price)}
+                  </span>
+                )}
+              </div>
+            ) : (
+              <span className="text-xs font-semibold text-blue-600 block truncate">
+                Price on Request
+              </span>
+            )}
+
+            {/* Availability Stock */}
+            <div className="text-[11px] text-slate-500 mt-1 truncate">
               {product.stock !== null && product.stock !== undefined ? (
                 product.stock > 0 ? (
-                  <span className="text-emerald-400 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3" />
-                    <span>In Stock ({product.stock})</span>
-                  </span>
+                  <span className="text-emerald-600 font-medium">In Stock</span>
                 ) : (
-                  <span className="text-rose-400">Out of Stock</span>
+                  <span className="text-rose-500 font-medium">Out of Stock</span>
                 )
               ) : (
                 <span className="text-slate-400">Availability on Request</span>
@@ -199,31 +181,20 @@ export const ProductCard = ({ product }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5">
-            {/* Quick Compare Button */}
-            <button
-              type="button"
-              onClick={handleCompareClick}
-              className={`p-2 rounded-xl transition-all ${
-                inCompare
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                  : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-cyan-300 border border-slate-800'
-              }`}
-              title={inCompare ? 'Remove from Compare' : 'Add to Compare'}
-              aria-label={`Toggle compare for ${product.title}`}
-            >
-              <Scale className="w-4 h-4" />
-            </button>
-
-            {/* View Details Link */}
-            <Link
-              to={`/products/${prodId}`}
-              className="p-2 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-300 hover:text-white transition-all duration-200 border border-slate-700/60 hover:border-brand-500 shadow-sm group-hover:translate-x-0.5"
-              aria-label={`View details for ${product.title}`}
-            >
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          {/* Blue Cart Button */}
+          <button
+            type="button"
+            onClick={handleCartClick}
+            className={`w-9 h-9 min-w-[2.25rem] min-h-[2.25rem] rounded-xl flex items-center justify-center flex-shrink-0 transition-all shadow-sm ${
+              isAddedToCart
+                ? 'bg-emerald-600 text-white scale-105'
+                : 'bg-blue-600 hover:bg-blue-700 text-white hover:scale-105'
+            }`}
+            title="Add to Cart"
+            aria-label={`Add ${product.title} to Cart`}
+          >
+            {isAddedToCart ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />}
+          </button>
         </div>
       </div>
     </div>

@@ -144,16 +144,13 @@ export const ProductsPage = () => {
               total: res.total || res.data.length
             });
           }
-          if (res.pagination) {
-            setPaginationInfo(res.pagination);
-          } else {
-            setPaginationInfo({
-              page: currentPage,
-              limit: pageSize,
-              totalPages: Math.ceil((res.total || res.data.length) / pageSize),
-              total: res.total || res.data.length
-            });
-          }
+          const totalCount = Number(res.total ?? res.pagination?.total ?? res.data?.length ?? 0);
+          setPaginationInfo({
+            page: Number(res.pagination?.page || currentPage),
+            limit: Number(res.pagination?.limit || pageSize),
+            totalPages: Number(res.pagination?.totalPages || Math.ceil(totalCount / pageSize) || 1),
+            total: totalCount
+          });
         }
       } catch (err) {
         console.warn('Error fetching products:', err.message);
@@ -268,37 +265,39 @@ export const ProductsPage = () => {
   );
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 font-sans">
       {/* Title & Description */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">
-          Product <span className="gradient-text">Catalog & Aggregator</span>
+      <div className="space-y-1.5">
+        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          Product <span className="text-blue-600">Catalog & Aggregator</span>
         </h1>
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-slate-500">
           Intelligent hardware aggregation across verified distributors, live streams, and technical specifications.
         </p>
       </div>
 
       {/* Main Filter & Search Bar */}
-      <div className="glass-panel rounded-2xl p-4 sm:p-6 space-y-4 border border-slate-800">
+      <div className="bg-white rounded-2xl p-4 sm:p-6 space-y-4 border border-slate-200/90 shadow-2xs">
         {/* Stream Source Selector */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-          <span className="text-slate-400 font-mono text-[11px] whitespace-nowrap flex items-center gap-1.5 mr-1">
-            <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" /> Source Stream:
+          <span className="text-slate-500 font-sans text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 mr-1">
+            <Radio className="w-3.5 h-3.5 text-blue-600 animate-pulse" /> Source Stream:
           </span>
           <button
             type="button"
             onClick={() => handleSourceChange('all')}
-            className={`px-3 py-1.5 rounded-xl font-mono text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl font-sans text-xs font-medium flex items-center gap-1.5 transition-all ${
               selectedSource === 'all'
-                ? 'bg-gradient-to-r from-brand-600 to-cyan-600 text-white font-bold shadow-md shadow-brand-500/20'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-blue-600 text-white font-semibold shadow-sm border border-blue-600'
+                : 'bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
             All Sources (Aggregated)
             {providerBreakdown.total ? (
-              <span className="ml-1 px-1.5 py-0.2 rounded-full bg-black/40 text-[10px] text-cyan-200">
+              <span className={`ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
+                selectedSource === 'all' ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-700'
+              }`}>
                 {providerBreakdown.total}
               </span>
             ) : null}
@@ -306,10 +305,10 @@ export const ProductsPage = () => {
           <button
             type="button"
             onClick={() => handleSourceChange('local')}
-            className={`px-3 py-1.5 rounded-xl font-mono text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl font-sans text-xs font-medium flex items-center gap-1.5 transition-all ${
               selectedSource === 'local'
-                ? 'bg-brand-600 text-white font-bold shadow-md shadow-brand-500/20'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-blue-600 text-white font-semibold shadow-sm border border-blue-600'
+                : 'bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             <Database className="w-3.5 h-3.5" />
@@ -318,10 +317,10 @@ export const ProductsPage = () => {
           <button
             type="button"
             onClick={() => handleSourceChange('dummyjson')}
-            className={`px-3 py-1.5 rounded-xl font-mono text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl font-sans text-xs font-medium flex items-center gap-1.5 transition-all ${
               selectedSource === 'dummyjson'
-                ? 'bg-purple-600 text-white font-bold shadow-md shadow-purple-500/20'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-purple-600 text-white font-semibold shadow-sm border border-purple-600'
+                : 'bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             DummyJSON Partner Stream
@@ -329,10 +328,10 @@ export const ProductsPage = () => {
           <button
             type="button"
             onClick={() => handleSourceChange('ebay')}
-            className={`px-3 py-1.5 rounded-xl font-mono text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl font-sans text-xs font-medium flex items-center gap-1.5 transition-all ${
               selectedSource === 'ebay'
-                ? 'bg-amber-600 text-white font-bold shadow-md shadow-amber-500/20'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-amber-600 text-white font-semibold shadow-sm border border-amber-600'
+                : 'bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             eBay Browse Stream
@@ -357,7 +356,7 @@ export const ProductsPage = () => {
               <select
                 value={selectedSector}
                 onChange={(e) => handleSectorChange(e.target.value)}
-                className="w-full appearance-none bg-slate-900 border border-slate-700/80 rounded-xl py-2 pl-10 pr-8 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl py-2 pl-10 pr-8 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                 aria-label="Filter by Sector"
               >
                 <option value="">All Electronic Sectors</option>
@@ -367,7 +366,7 @@ export const ProductsPage = () => {
                   </option>
                 ))}
               </select>
-              <Layers className="w-4 h-4 text-cyan-400 absolute left-3.5 top-2.5 pointer-events-none" />
+              <Layers className="w-4 h-4 text-blue-600 absolute left-3.5 top-2.5 pointer-events-none" />
             </div>
           </div>
 
@@ -377,7 +376,7 @@ export const ProductsPage = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full appearance-none bg-slate-900 border border-slate-700/80 rounded-xl py-2 pl-9 pr-7 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl py-2 pl-9 pr-7 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                 aria-label="Filter by Category"
               >
                 <option value="">All Categories</option>
@@ -387,7 +386,7 @@ export const ProductsPage = () => {
                   </option>
                 ))}
               </select>
-              <Tag className="w-3.5 h-3.5 text-brand-400 absolute left-3 top-3 pointer-events-none" />
+              <Tag className="w-3.5 h-3.5 text-blue-500 absolute left-3 top-3 pointer-events-none" />
             </div>
           </div>
 
@@ -401,7 +400,7 @@ export const ProductsPage = () => {
                   setCurrentPage(1);
                   updateUrlParams({ sort: e.target.value, page: 1 });
                 }}
-                className="w-full appearance-none bg-slate-900 border border-slate-700/80 rounded-xl py-2 pl-9 pr-7 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl py-2 pl-9 pr-7 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                 aria-label="Sort products"
               >
                 <option value="newest">Newest First</option>
@@ -417,18 +416,18 @@ export const ProductsPage = () => {
 
         {/* Quick Category Chips */}
         {availableCategories.length > 0 && (
-          <div className="pt-2 border-t border-slate-800/80">
+          <div className="pt-2 border-t border-slate-100">
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin text-xs">
-              <span className="text-slate-400 font-mono text-[11px] whitespace-nowrap mr-1 flex items-center gap-1">
-                <Filter className="w-3 h-3 text-cyan-400" /> Categories:
+              <span className="text-slate-500 font-sans text-xs font-semibold whitespace-nowrap mr-1 flex items-center gap-1.5">
+                <Filter className="w-3.5 h-3.5 text-blue-600" /> Categories:
               </span>
               <button
                 type="button"
                 onClick={() => handleCategoryChange('')}
-                className={`px-2.5 py-1 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
+                className={`px-3 py-1 rounded-lg text-xs font-sans whitespace-nowrap transition-all ${
                   !selectedCategory
-                    ? 'bg-brand-500 text-white font-bold shadow-sm'
-                    : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
+                    ? 'bg-blue-600 text-white font-semibold shadow-sm border border-blue-600'
+                    : 'bg-slate-50 text-slate-700 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200 border border-slate-200 font-medium'
                 }`}
               >
                 All
@@ -440,10 +439,10 @@ export const ProductsPage = () => {
                     key={cat}
                     type="button"
                     onClick={() => handleCategoryChange(isSelected ? '' : cat)}
-                    className={`px-2.5 py-1 rounded-lg text-xs whitespace-nowrap transition-all ${
+                    className={`px-3 py-1 rounded-lg text-xs font-sans whitespace-nowrap transition-all ${
                       isSelected
-                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 font-bold'
-                        : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                        ? 'bg-blue-600 text-white font-semibold border border-blue-600 shadow-sm'
+                        : 'bg-slate-50 text-slate-700 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200 border border-slate-200 font-medium'
                     }`}
                   >
                     {cat}
@@ -456,16 +455,16 @@ export const ProductsPage = () => {
 
         {/* Active Filter Tags Pill Bar */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800 text-xs">
-            <span className="text-slate-400 font-mono">Active filters:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-100 text-xs">
+            <span className="text-slate-500 font-sans font-medium text-xs">Active filters:</span>
 
             {selectedSector && (
-              <span className="px-2.5 py-1 rounded-lg bg-brand-500/15 border border-brand-500/30 text-brand-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 flex items-center gap-1.5 font-sans font-medium">
                 Sector: {selectedSector}
                 <button
                   type="button"
                   onClick={() => handleSectorChange('')}
-                  className="hover:text-white"
+                  className="hover:text-blue-900 text-blue-500 transition-colors"
                   title="Remove sector"
                 >
                   <X className="w-3 h-3" />
@@ -474,12 +473,12 @@ export const ProductsPage = () => {
             )}
 
             {selectedCategory && (
-              <span className="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 flex items-center gap-1.5 font-sans font-medium">
                 Category: {selectedCategory}
                 <button
                   type="button"
                   onClick={() => handleCategoryChange('')}
-                  className="hover:text-white"
+                  className="hover:text-blue-900 text-blue-500 transition-colors"
                   title="Remove category"
                 >
                   <X className="w-3 h-3" />
@@ -488,7 +487,7 @@ export const ProductsPage = () => {
             )}
 
             {searchTerm && (
-              <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-1.5 font-sans font-medium">
                 Query: "{searchTerm}"
                 <button
                   type="button"
@@ -496,7 +495,7 @@ export const ProductsPage = () => {
                     setSearchTerm('');
                     updateUrlParams({ search: '', page: 1 });
                   }}
-                  className="hover:text-white"
+                  className="hover:text-amber-950 text-amber-600 transition-colors"
                   title="Remove search"
                 >
                   <X className="w-3 h-3" />
@@ -507,7 +506,7 @@ export const ProductsPage = () => {
             {activeBrandList.map((b) => (
               <span
                 key={b}
-                className="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 flex items-center gap-1.5 font-mono"
+                className="px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 flex items-center gap-1.5 font-sans font-medium"
               >
                 Brand: {b}
                 <button
@@ -516,7 +515,7 @@ export const ProductsPage = () => {
                     const remaining = activeBrandList.filter((item) => item !== b);
                     handleAdvancedFilterChange({ brand: remaining.join(',') || undefined, page: 1 });
                   }}
-                  className="hover:text-white"
+                  className="hover:text-blue-900 text-blue-500 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -524,12 +523,12 @@ export const ProductsPage = () => {
             ))}
 
             {(minPrice || maxPrice) && (
-              <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-1.5 font-sans font-medium">
                 Price: {minPrice ? formatCurrency(minPrice) : '₹0'} - {maxPrice ? formatCurrency(maxPrice) : 'Any'}
                 <button
                   type="button"
                   onClick={() => handleAdvancedFilterChange({ minPrice: undefined, maxPrice: undefined, page: 1 })}
-                  className="hover:text-white"
+                  className="hover:text-emerald-950 text-emerald-600 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -537,12 +536,12 @@ export const ProductsPage = () => {
             )}
 
             {minRating && (
-              <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-1.5 font-sans font-medium">
                 Rating: {minRating}★+
                 <button
                   type="button"
                   onClick={() => handleAdvancedFilterChange({ minRating: undefined, page: 1 })}
-                  className="hover:text-white"
+                  className="hover:text-amber-950 text-amber-600 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -550,12 +549,12 @@ export const ProductsPage = () => {
             )}
 
             {availability === 'in_stock' && (
-              <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-1.5 font-sans font-medium">
                 In Stock Only
                 <button
                   type="button"
                   onClick={() => handleAdvancedFilterChange({ availability: undefined, page: 1 })}
-                  className="hover:text-white"
+                  className="hover:text-emerald-950 text-emerald-600 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -563,12 +562,12 @@ export const ProductsPage = () => {
             )}
 
             {selectedSeller && (
-              <span className="px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-purple-50 border border-purple-200 text-purple-700 flex items-center gap-1.5 font-sans font-medium">
                 Seller: {selectedSeller}
                 <button
                   type="button"
                   onClick={() => handleAdvancedFilterChange({ seller: undefined, page: 1 })}
-                  className="hover:text-white"
+                  className="hover:text-purple-950 text-purple-600 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -576,12 +575,12 @@ export const ProductsPage = () => {
             )}
 
             {selectedSource !== 'all' && (
-              <span className="px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-300 flex items-center gap-1.5 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-purple-50 border border-purple-200 text-purple-700 flex items-center gap-1.5 font-sans font-medium">
                 Stream: {selectedSource === 'local' ? 'Aryan Verified' : selectedSource === 'dummyjson' ? 'DummyJSON' : 'eBay'}
                 <button
                   type="button"
                   onClick={() => handleSourceChange('all')}
-                  className="hover:text-white"
+                  className="hover:text-purple-950 text-purple-600 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -592,7 +591,7 @@ export const ProductsPage = () => {
               variant="ghost"
               size="sm"
               onClick={handleResetFilters}
-              className="text-xs text-slate-400 hover:text-white ml-auto"
+              className="text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100 ml-auto font-sans font-medium"
             >
               Clear All Filters
             </Button>
@@ -620,24 +619,24 @@ export const ProductsPage = () => {
       />
 
       {/* Results Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 font-mono gap-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-600 font-sans gap-1">
         <span>
-          Showing <strong className="text-white">{products.length}</strong> of{' '}
-          <strong className="text-cyan-400">{paginationInfo.total}</strong> products
+          Showing <strong className="text-slate-900 font-bold">{products.length}</strong> of{' '}
+          <strong className="text-blue-600 font-bold">{paginationInfo.total}</strong> products
           {selectedCategory && (
-            <span> in <span className="text-white">"{selectedCategory}"</span></span>
+            <span> in <span className="text-slate-900 font-semibold">"{selectedCategory}"</span></span>
           )}
           {selectedSector && !selectedCategory && (
-            <span> in sector <span className="text-white">"{selectedSector}"</span></span>
+            <span> in sector <span className="text-slate-900 font-semibold">"{selectedSector}"</span></span>
           )}
           {selectedSource === 'all' && (
-            <span className="text-slate-500 ml-1.5 hidden md:inline">
+            <span className="text-slate-400 ml-1.5 hidden md:inline">
               (Aryan Catalog: {providerBreakdown.local} | Partner Streams: {providerBreakdown.external})
             </span>
           )}
         </span>
         {paginationInfo.totalPages > 1 && (
-          <span className="text-slate-500">
+          <span className="text-slate-500 font-medium">
             Page {currentPage} of {paginationInfo.totalPages}
           </span>
         )}

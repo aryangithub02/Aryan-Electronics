@@ -5,6 +5,7 @@ import ProductCard from '../src/components/product/ProductCard';
 import ProductDetailPage from '../src/pages/ProductDetailPage';
 import { ComparePage } from '../src/pages/ComparePage';
 import { AuthContext } from '../src/context/AuthContext';
+import { CartProvider } from '../src/context/CartContext';
 import api from '../src/services/api';
 
 jest.mock('../src/services/api');
@@ -109,11 +110,13 @@ describe('Frontend Real Products Integration Tests', () => {
 
   it('ProductCard renders real product data directly with no placehold.co images', () => {
     render(
-      <AuthContext.Provider value={mockAuthContext}>
-        <BrowserRouter>
-          <ProductCard product={realProductSample} />
-        </BrowserRouter>
-      </AuthContext.Provider>
+      <CartProvider>
+        <AuthContext.Provider value={mockAuthContext}>
+          <BrowserRouter>
+            <ProductCard product={realProductSample} />
+          </BrowserRouter>
+        </AuthContext.Provider>
+      </CartProvider>
     );
 
     expect(screen.getByText('Acer Chromebook 314 (CB314-2H/CB314-2HT)')).toBeInTheDocument();
@@ -127,11 +130,13 @@ describe('Frontend Real Products Integration Tests', () => {
 
   it('ProductCard displays Price on Request and Availability on Request for commercial items with null price/stock', () => {
     render(
-      <AuthContext.Provider value={mockAuthContext}>
-        <BrowserRouter>
-          <ProductCard product={realNullPriceProduct} />
-        </BrowserRouter>
-      </AuthContext.Provider>
+      <CartProvider>
+        <AuthContext.Provider value={mockAuthContext}>
+          <BrowserRouter>
+            <ProductCard product={realNullPriceProduct} />
+          </BrowserRouter>
+        </AuthContext.Provider>
+      </CartProvider>
     );
 
     expect(screen.getByText('Mindray BeneVision N15')).toBeInTheDocument();
@@ -141,11 +146,13 @@ describe('Frontend Real Products Integration Tests', () => {
 
   it('ProductCard image triggers onError fallback cleanly without breaking', () => {
     render(
-      <AuthContext.Provider value={mockAuthContext}>
-        <BrowserRouter>
-          <ProductCard product={realProductSample} />
-        </BrowserRouter>
-      </AuthContext.Provider>
+      <CartProvider>
+        <AuthContext.Provider value={mockAuthContext}>
+          <BrowserRouter>
+            <ProductCard product={realProductSample} />
+          </BrowserRouter>
+        </AuthContext.Provider>
+      </CartProvider>
     );
 
     const img = screen.getByRole('img');
@@ -160,13 +167,15 @@ describe('Frontend Real Products Integration Tests', () => {
     });
 
     render(
-      <AuthContext.Provider value={mockAuthContext}>
-        <MemoryRouter initialEntries={['/products/1']}>
-          <Routes>
-            <Route path="/products/:id" element={<ProductDetailPage />} />
-          </Routes>
-        </MemoryRouter>
-      </AuthContext.Provider>
+      <CartProvider>
+        <AuthContext.Provider value={mockAuthContext}>
+          <MemoryRouter initialEntries={['/products/1']}>
+            <Routes>
+              <Route path="/products/:id" element={<ProductDetailPage />} />
+            </Routes>
+          </MemoryRouter>
+        </AuthContext.Provider>
+      </CartProvider>
     );
 
     expect(await screen.findByText('Acer Chromebook 314 (CB314-2H/CB314-2HT)')).toBeInTheDocument();
@@ -200,11 +209,13 @@ describe('Frontend Real Products Integration Tests', () => {
     };
 
     render(
-      <AuthContext.Provider value={compareAuth}>
-        <BrowserRouter>
-          <ComparePage />
-        </BrowserRouter>
-      </AuthContext.Provider>
+      <CartProvider>
+        <AuthContext.Provider value={compareAuth}>
+          <BrowserRouter>
+            <ComparePage />
+          </BrowserRouter>
+        </AuthContext.Provider>
+      </CartProvider>
     );
 
     expect(await screen.findByText('Acer Chromebook 314 (CB314-2H/CB314-2HT)')).toBeInTheDocument();

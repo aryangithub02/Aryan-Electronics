@@ -283,7 +283,8 @@ class AggregationService {
       pagination: {
         page: pageNum,
         limit: limitNum,
-        totalPages: Math.ceil(total / limitNum)
+        totalPages: Math.ceil(total / limitNum),
+        total
       },
       providerBreakdown: {
         local: localProducts.length,

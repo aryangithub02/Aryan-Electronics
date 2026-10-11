@@ -12,14 +12,14 @@ export const Button = ({
   onClick,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed select-none font-sans';
 
   const variants = {
-    primary: 'bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-lg shadow-brand-500/25 focus:ring-brand-500 active:scale-[0.98]',
-    secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700/80 focus:ring-slate-500 active:scale-[0.98]',
-    outline: 'border border-brand-500/50 text-brand-300 hover:bg-brand-500/10 focus:ring-brand-500 active:scale-[0.98]',
-    ghost: 'text-slate-300 hover:text-white hover:bg-slate-800/60 focus:ring-slate-600',
-    danger: 'bg-red-600/90 hover:bg-red-600 text-white shadow-lg shadow-red-500/20 focus:ring-red-500 active:scale-[0.98]'
+    primary: 'bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm focus:ring-blue-500 active:scale-[0.98]',
+    secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200/90 font-medium focus:ring-slate-300 active:scale-[0.98]',
+    outline: 'border border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-blue-600 hover:border-blue-300 font-semibold focus:ring-blue-500 active:scale-[0.98]',
+    ghost: 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:ring-slate-300',
+    danger: 'bg-rose-600 hover:bg-rose-700 text-white font-semibold shadow-sm focus:ring-rose-500 active:scale-[0.98]'
   };
 
   const sizes = {

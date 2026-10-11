@@ -103,24 +103,24 @@ export const RecommendationSection = ({ productId, currentProduct }) => {
   const currentTabMeta = tabs.find(t => t.id === activeTab) || tabs[0];
 
   return (
-    <section className="space-y-6 pt-10 border-t border-slate-800/80" aria-label="Product Recommendations">
+    <section className="space-y-6 pt-10 border-t border-slate-200 font-sans" aria-label="Product Recommendations">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono tracking-wider uppercase mb-1">
+          <div className="flex items-center gap-2 text-blue-600 text-xs font-semibold tracking-wider uppercase mb-1">
             <Sparkles className="w-4 h-4" />
             <span>Intelligent Discovery Engine</span>
           </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
             Recommended For You
           </h2>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             {currentTabMeta.subtitle}
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 self-start md:self-auto">
+        <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-slate-100 border border-slate-200 self-start md:self-auto">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -128,16 +128,16 @@ export const RecommendationSection = ({ productId, currentProduct }) => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span>{tab.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                  isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-sans font-bold ${
+                  isActive ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-700'
                 }`}>
                   {tab.count}
                 </span>
@@ -148,15 +148,15 @@ export const RecommendationSection = ({ productId, currentProduct }) => {
       </div>
 
       {/* Explanatory Banner */}
-      <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/70 text-xs text-slate-300">
+      <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+          <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0" />
           <span>
-            <strong className="text-white font-medium">Relevance Logic: </strong>
+            <strong className="text-slate-900 font-semibold">Relevance Logic: </strong>
             {currentTabMeta.explanation}
           </span>
         </div>
-        <span className="hidden sm:inline-block text-[11px] font-mono text-slate-500">
+        <span className="hidden sm:inline-block text-[11px] text-slate-500 font-medium">
           Rule-based heuristic ranking
         </span>
       </div>

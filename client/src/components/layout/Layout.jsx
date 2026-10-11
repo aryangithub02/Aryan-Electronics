@@ -9,9 +9,9 @@ export const Layout = ({ children }) => {
   const { authPrompt, closeAuthPrompt } = useAuth();
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-brand-500 selection:text-white">
+    <div className="flex flex-col min-h-screen bg-[#f4f7fb] text-slate-800 antialiased selection:bg-blue-600 selection:text-white font-sans">
       <Navbar />
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 w-full">
         <ErrorBoundary>
           {children}
         </ErrorBoundary>
@@ -28,4 +28,3 @@ export const Layout = ({ children }) => {
 };
 
 export default Layout;
-

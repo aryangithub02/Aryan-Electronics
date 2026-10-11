@@ -397,17 +397,19 @@ export const AdminDashboardPage = () => {
       )}
 
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 border border-slate-800 p-8 shadow-2xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Production Dashboard
             </div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Platform Administration & Analytics
             </h1>
-            <p className="text-slate-400 text-sm max-w-2xl">
+            <p className="text-slate-600 text-sm max-w-2xl">
               Real-time monitoring, product catalog lifecycle, external provider aggregation status,
               and anonymous usage analytics for Aryan Electronics.
             </p>
@@ -422,51 +424,51 @@ export const AdminDashboardPage = () => {
                 if (activeTab === 'users') loadUsers();
                 if (activeTab === 'taxonomy') loadTaxonomy();
               }}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold border border-slate-700 transition flex items-center gap-2"
+              className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold border border-slate-200 shadow-2xs hover:border-slate-300 transition flex items-center gap-2"
             >
               🔄 Refresh
             </button>
-            <div className="px-4 py-2.5 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
+            <div className="px-4 py-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold">
               DB: {systemHealth?.database?.mode || 'live'}
             </div>
           </div>
         </div>
 
         {/* Top KPI Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8 pt-6 border-t border-slate-800/80">
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Total Products</div>
-            <div className="text-2xl font-bold text-white mt-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8 pt-6 border-t border-slate-100">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total Products</div>
+            <div className="text-2xl font-black text-slate-900 mt-1">
               {statsLoading ? '...' : stats?.totalProducts ?? 0}
             </div>
           </div>
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Featured Items</div>
-            <div className="text-2xl font-bold text-amber-400 mt-1">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Featured Items</div>
+            <div className="text-2xl font-black text-amber-600 mt-1">
               {statsLoading ? '...' : stats?.totalFeatured ?? 0}
             </div>
           </div>
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Trending Items</div>
-            <div className="text-2xl font-bold text-cyan-400 mt-1">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Trending Items</div>
+            <div className="text-2xl font-black text-blue-600 mt-1">
               {statsLoading ? '...' : stats?.totalTrending ?? 0}
             </div>
           </div>
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Total Users</div>
-            <div className="text-2xl font-bold text-purple-400 mt-1">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total Users</div>
+            <div className="text-2xl font-black text-purple-600 mt-1">
               {statsLoading ? '...' : stats?.totalUsers ?? 0}
             </div>
           </div>
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Sectors</div>
-            <div className="text-2xl font-bold text-emerald-400 mt-1">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Sectors</div>
+            <div className="text-2xl font-black text-emerald-600 mt-1">
               {statsLoading ? '...' : stats?.sectorsCount ?? 0}
             </div>
           </div>
-          <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
-            <div className="text-xs text-slate-400 font-medium">Brands</div>
-            <div className="text-2xl font-bold text-sky-400 mt-1">
+          <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Brands</div>
+            <div className="text-2xl font-black text-cyan-600 mt-1">
               {statsLoading ? '...' : stats?.brandsCount ?? 0}
             </div>
           </div>
@@ -474,7 +476,7 @@ export const AdminDashboardPage = () => {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex border-b border-slate-800 space-x-2 overflow-x-auto pb-1">
+      <div className="flex border-b border-slate-200 space-x-2 overflow-x-auto pb-px">
         {[
           { id: 'analytics', label: '📊 Analytics Hub' },
           { id: 'products', label: '📦 Product Catalog' },
@@ -485,10 +487,10 @@ export const AdminDashboardPage = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-5 py-3 rounded-t-xl text-sm font-semibold transition-all whitespace-nowrap ${
+            className={`px-5 py-3 rounded-t-xl text-sm font-semibold transition-all whitespace-nowrap border-b-2 ${
               activeTab === tab.id
-                ? 'bg-slate-900 text-cyan-400 border-t-2 border-cyan-400 shadow-md'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900/40'
+                ? 'bg-white text-blue-600 border-blue-600 shadow-2xs font-bold'
+                : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
             }`}
           >
             {tab.label}
@@ -500,15 +502,15 @@ export const AdminDashboardPage = () => {
       {activeTab === 'analytics' && (
         <div className="space-y-6">
           {/* Time range selector */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
             <div>
-              <h2 className="text-lg font-bold text-white">Aggregated Platform Activity</h2>
-              <p className="text-xs text-slate-400">
+              <h2 className="text-lg font-bold text-slate-900">Aggregated Platform Activity</h2>
+              <p className="text-xs text-slate-500">
                 Metrics aggregated from genuine user searches, product views, and comparisons.
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-400 mr-1 font-medium">Time Horizon:</span>
+              <span className="text-xs text-slate-500 mr-1 font-medium">Time Horizon:</span>
               {['24h', '7d', '30d', 'all'].map((r) => (
                 <button
                   key={r}
@@ -518,8 +520,8 @@ export const AdminDashboardPage = () => {
                   }}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                     timeRange === r
-                      ? 'bg-cyan-500 text-slate-950 font-bold shadow'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-blue-600 text-white font-bold shadow-xs'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
                   {r === 'all' ? 'All Time' : `Last ${r}`}
@@ -531,129 +533,129 @@ export const AdminDashboardPage = () => {
           {analyticsLoading ? (
             <div className="py-24 flex flex-col items-center justify-center">
               <Spinner size="lg" />
-              <p className="text-xs text-slate-400 mt-3 font-mono">Aggregating telemetry data...</p>
+              <p className="text-xs text-slate-500 mt-3 font-mono">Aggregating telemetry data...</p>
             </div>
           ) : (
             <>
               {/* Analytics Summary Metric Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Product Views</div>
-                  <div className="text-3xl font-extrabold text-cyan-400 mt-2">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                  <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Product Views</div>
+                  <div className="text-3xl font-extrabold text-blue-600 mt-2">
                     {analyticsData?.totalViews ?? 0}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">Total PDP impressions</div>
+                  <div className="text-xs text-slate-400 mt-1">Total PDP impressions</div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Search Queries</div>
-                  <div className="text-3xl font-extrabold text-indigo-400 mt-2">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                  <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Search Queries</div>
+                  <div className="text-3xl font-extrabold text-indigo-600 mt-2">
                     {analyticsData?.totalSearches ?? 0}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">Unique catalog searches</div>
+                  <div className="text-xs text-slate-400 mt-1">Unique catalog searches</div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Comparisons</div>
-                  <div className="text-3xl font-extrabold text-emerald-400 mt-2">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                  <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Comparisons</div>
+                  <div className="text-3xl font-extrabold text-emerald-600 mt-2">
                     {analyticsData?.totalComparisons ?? 0}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">Multi-device comparison runs</div>
+                  <div className="text-xs text-slate-400 mt-1">Multi-device comparison runs</div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Wishlist Adds</div>
-                  <div className="text-3xl font-extrabold text-rose-400 mt-2">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                  <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Wishlist Adds</div>
+                  <div className="text-3xl font-extrabold text-rose-600 mt-2">
                     {analyticsData?.totalWishlistAdds ?? 0}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">Saved products activity</div>
+                  <div className="text-xs text-slate-400 mt-1">Saved products activity</div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Search Conversion</div>
-                  <div className="text-3xl font-extrabold text-amber-400 mt-2">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs">
+                  <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Search Conversion</div>
+                  <div className="text-3xl font-extrabold text-amber-600 mt-2">
                     {analyticsData?.searchConversionRate ?? 0}%
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">Search to product view rate</div>
+                  <div className="text-xs text-slate-400 mt-1">Search to product view rate</div>
                 </div>
               </div>
 
               {/* Analytics Tables & Visuals */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Top 10 Viewed Products */}
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                  <h3 className="text-base font-bold text-white mb-4 flex items-center justify-between">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs">
+                  <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center justify-between">
                     <span>🔥 Most-Viewed Products</span>
-                    <span className="text-xs font-normal text-slate-400">By distinct views</span>
+                    <span className="text-xs font-normal text-slate-500">By distinct views</span>
                   </h3>
                   {analyticsData?.topProducts?.length > 0 ? (
                     <div className="space-y-3">
                       {analyticsData.topProducts.map((prod, idx) => (
                         <div
                           key={prod.productId || idx}
-                          className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-750 hover:bg-slate-800 transition"
+                          className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/70 transition"
                         >
                           <div className="flex items-center space-x-3 overflow-hidden">
-                            <span className="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 text-xs font-bold flex items-center justify-center">
+                            <span className="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold flex items-center justify-center">
                               #{idx + 1}
                             </span>
                             <div className="truncate">
-                              <div className="text-sm font-semibold text-slate-200 truncate">
+                              <div className="text-sm font-semibold text-slate-900 truncate">
                                 {prod.title}
                               </div>
-                              <div className="text-xs text-slate-400">
+                              <div className="text-xs text-slate-500">
                                 {prod.brand || 'Brand'} • {prod.sector || 'Sector'}
                               </div>
                             </div>
                           </div>
-                          <div className="text-sm font-mono font-bold text-cyan-400 pl-4 whitespace-nowrap">
+                          <div className="text-sm font-mono font-bold text-blue-600 pl-4 whitespace-nowrap">
                             {prod.views} views
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="py-12 text-center text-sm text-slate-500">
+                    <div className="py-12 text-center text-sm text-slate-400">
                       No product views recorded for this time range yet.
                     </div>
                   )}
                 </div>
 
                 {/* Popular Search Keywords */}
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                  <h3 className="text-base font-bold text-white mb-4 flex items-center justify-between">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs">
+                  <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center justify-between">
                     <span>🔍 Popular Searches</span>
-                    <span className="text-xs font-normal text-slate-400">Top customer keywords</span>
+                    <span className="text-xs font-normal text-slate-500">Top customer keywords</span>
                   </h3>
                   {analyticsData?.popularSearches?.length > 0 ? (
                     <div className="space-y-3">
                       {analyticsData.popularSearches.map((item, idx) => (
                         <div
                           key={item.query || idx}
-                          className="p-3 rounded-xl bg-slate-800/40 border border-slate-750 flex items-center justify-between"
+                          className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between"
                         >
                           <div className="flex items-center space-x-3">
                             <span className="text-xs font-mono text-slate-400">#{idx + 1}</span>
-                            <span className="text-sm font-medium text-slate-200 font-mono">
+                            <span className="text-sm font-medium text-slate-800 font-mono">
                               "{item.query}"
                             </span>
                           </div>
-                          <span className="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
                             {item.count} searches
                           </span>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="py-12 text-center text-sm text-slate-500">
+                    <div className="py-12 text-center text-sm text-slate-400">
                       No search keywords recorded for this time range yet.
                     </div>
                   )}
                 </div>
 
                 {/* Sector Popularity */}
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                  <h3 className="text-base font-bold text-white mb-4">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs">
+                  <h3 className="text-base font-bold text-slate-900 mb-4">
                     🏢 Sector Engagement Breakdown
                   </h3>
                   {analyticsData?.sectorPopularity?.length > 0 ? (
@@ -664,14 +666,14 @@ export const AdminDashboardPage = () => {
                         return (
                           <div key={sector.name} className="space-y-1">
                             <div className="flex justify-between text-xs">
-                              <span className="font-semibold text-slate-300">{sector.name}</span>
-                              <span className="text-slate-400 font-mono">
+                              <span className="font-semibold text-slate-800">{sector.name}</span>
+                              <span className="text-slate-500 font-mono">
                                 {sector.count} views ({pct}%)
                               </span>
                             </div>
-                            <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                               <div
-                                className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-full rounded-full transition-all duration-500"
+                                className="bg-gradient-to-r from-emerald-500 to-blue-500 h-full rounded-full transition-all duration-500"
                                 style={{ width: `${Math.max(5, pct)}%` }}
                               />
                             </div>
@@ -680,15 +682,15 @@ export const AdminDashboardPage = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="py-12 text-center text-sm text-slate-500">
+                    <div className="py-12 text-center text-sm text-slate-400">
                       No sector engagement logged yet.
                     </div>
                   )}
                 </div>
 
                 {/* Brand Popularity */}
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                  <h3 className="text-base font-bold text-white mb-4">
+                <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs">
+                  <h3 className="text-base font-bold text-slate-900 mb-4">
                     🏷️ Brand Popularity Distribution
                   </h3>
                   {analyticsData?.brandPopularity?.length > 0 ? (
@@ -699,12 +701,12 @@ export const AdminDashboardPage = () => {
                         return (
                           <div key={brand.name} className="space-y-1">
                             <div className="flex justify-between text-xs">
-                              <span className="font-semibold text-slate-300">{brand.name}</span>
-                              <span className="text-slate-400 font-mono">
+                              <span className="font-semibold text-slate-800">{brand.name}</span>
+                              <span className="text-slate-500 font-mono">
                                 {brand.count} views ({pct}%)
                               </span>
                             </div>
-                            <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full transition-all duration-500"
                                 style={{ width: `${Math.max(5, pct)}%` }}
@@ -715,7 +717,7 @@ export const AdminDashboardPage = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="py-12 text-center text-sm text-slate-500">
+                    <div className="py-12 text-center text-sm text-slate-400">
                       No brand popularity logged yet.
                     </div>
                   )}
@@ -723,10 +725,10 @@ export const AdminDashboardPage = () => {
               </div>
 
               {/* Analytics Source Attribution */}
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between text-xs text-slate-500">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Telemetry source: <strong className="text-slate-200">{analyticsData?.dataSource}</strong></span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>Telemetry source: <strong className="text-slate-800">{analyticsData?.dataSource}</strong></span>
                 </div>
                 <span>Collected strictly without PII (No sensitive user identity retained)</span>
               </div>
@@ -739,7 +741,7 @@ export const AdminDashboardPage = () => {
       {activeTab === 'products' && (
         <div className="space-y-6">
           {/* Action Bar */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-slate-900 p-4 rounded-2xl border border-slate-800">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
             <div className="flex flex-1 items-center gap-3">
               <input
                 type="text"
@@ -747,11 +749,11 @@ export const AdminDashboardPage = () => {
                 value={productSearch}
                 onChange={(e) => setProductSearch(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && loadProducts(1)}
-                className="w-full max-w-sm px-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                className="w-full max-w-sm px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
               />
               <button
                 onClick={() => loadProducts(1)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold rounded-xl border border-slate-700 transition"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl border border-slate-200 transition"
               >
                 Search
               </button>
@@ -759,23 +761,23 @@ export const AdminDashboardPage = () => {
 
             <button
               onClick={handleOpenCreateModal}
-              className="px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-cyan-600/20 transition flex items-center justify-center gap-2"
+              className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-2"
             >
               <span>+</span> Add New Product
             </button>
           </div>
 
           {/* Products Table */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs">
             {productsLoading ? (
               <div className="py-20 flex flex-col items-center justify-center">
                 <Spinner size="lg" />
-                <p className="text-xs text-slate-400 mt-2 font-mono">Loading product inventory...</p>
+                <p className="text-xs text-slate-500 mt-2 font-mono">Loading product inventory...</p>
               </div>
             ) : products.length > 0 ? (
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-slate-300">
-                  <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase font-semibold border-b border-slate-800">
+                <table className="w-full text-left text-sm text-slate-700">
+                  <thead className="bg-slate-50 text-xs text-slate-600 uppercase font-bold border-b border-slate-200">
                     <tr>
                       <th className="py-4 px-4">Item</th>
                       <th className="py-4 px-4">SKU & Category</th>
@@ -786,41 +788,41 @@ export const AdminDashboardPage = () => {
                       <th className="py-4 px-4 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-100">
                     {products.map((prod) => (
-                      <tr key={prod.id || prod._id} className="hover:bg-slate-800/30 transition">
+                      <tr key={prod.id || prod._id} className="hover:bg-slate-50/70 transition">
                         <td className="py-3 px-4">
                           <div className="flex items-center space-x-3">
                             <img
                               src={prod.thumbnail || (prod.images && prod.images[0]) || '/placeholder.svg'}
                               alt={prod.title}
-                              className="w-12 h-12 rounded-lg object-contain bg-slate-800 border border-slate-750 p-1 flex-shrink-0"
+                              className="w-12 h-12 rounded-lg object-contain bg-slate-50 border border-slate-200 p-1 flex-shrink-0"
                               onError={(e) => {
                                 e.currentTarget.src =
-                                  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="100%" height="100%" fill="%231e293b"/></svg>';
+                                  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="100%" height="100%" fill="%23f1f5f9"/></svg>';
                               }}
                             />
                             <div className="max-w-xs">
-                              <div className="font-semibold text-white truncate" title={prod.title}>
+                              <div className="font-semibold text-slate-900 truncate" title={prod.title}>
                                 {prod.title}
                               </div>
-                              <div className="text-xs text-slate-400">{prod.brand}</div>
+                              <div className="text-xs text-slate-500">{prod.brand}</div>
                             </div>
                           </div>
                         </td>
                         <td className="py-3 px-4">
-                          <div className="font-mono text-xs text-cyan-400">{prod.SKU || prod.sku}</div>
-                          <div className="text-xs text-slate-400 truncate max-w-xs">{prod.category}</div>
+                          <div className="font-mono text-xs text-blue-600 font-bold">{prod.SKU || prod.sku}</div>
+                          <div className="text-xs text-slate-500 truncate max-w-xs">{prod.category}</div>
                         </td>
-                        <td className="py-3 px-4 font-mono font-semibold text-white">
+                        <td className="py-3 px-4 font-mono font-semibold text-slate-900">
                           ${prod.price !== null && prod.price !== undefined ? prod.price.toFixed(2) : 'N/A'}
                         </td>
                         <td className="py-3 px-4">
                           <span
                             className={`px-2 py-0.5 rounded text-xs font-semibold ${
                               (prod.stock || 0) > 10
-                                ? 'bg-emerald-500/10 text-emerald-400'
-                                : 'bg-rose-500/10 text-rose-400'
+                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                : 'bg-rose-50 text-rose-700 border border-rose-200'
                             }`}
                           >
                             {prod.stock ?? 0} in stock
@@ -832,8 +834,8 @@ export const AdminDashboardPage = () => {
                               onClick={() => handleToggleFeatured(prod.id)}
                               className={`px-2 py-0.5 rounded text-xs font-semibold transition ${
                                 prod.isFeatured
-                                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                                  : 'bg-slate-800 text-slate-500 hover:text-slate-300'
+                                  ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                  : 'bg-slate-100 text-slate-500 hover:text-slate-800'
                               }`}
                               title="Click to toggle Featured status"
                             >
@@ -843,8 +845,8 @@ export const AdminDashboardPage = () => {
                               onClick={() => handleToggleTrending(prod.id)}
                               className={`px-2 py-0.5 rounded text-xs font-semibold transition ${
                                 prod.isTrending
-                                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                                  : 'bg-slate-800 text-slate-500 hover:text-slate-300'
+                                  ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                                  : 'bg-slate-100 text-slate-500 hover:text-slate-800'
                               }`}
                               title="Click to toggle Trending status"
                             >
@@ -855,7 +857,7 @@ export const AdminDashboardPage = () => {
                         <td className="py-3 px-4">
                           <button
                             onClick={() => handleOpenSellerModal(prod)}
-                            className="text-xs text-indigo-400 hover:text-indigo-300 underline font-medium"
+                            className="text-xs text-blue-600 hover:text-blue-800 underline font-semibold"
                           >
                             {prod.sellers?.length || 0} offers
                           </button>
@@ -864,13 +866,13 @@ export const AdminDashboardPage = () => {
                           <div className="flex items-center justify-end space-x-2">
                             <button
                               onClick={() => handleOpenEditModal(prod)}
-                              className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition"
+                              className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold border border-slate-200 transition"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => setDeleteConfirmId(prod.id)}
-                              className="px-2.5 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-lg text-xs font-semibold transition"
+                              className="px-2.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold border border-rose-200 transition"
                             >
                               Delete
                             </button>
@@ -882,29 +884,29 @@ export const AdminDashboardPage = () => {
                 </table>
               </div>
             ) : (
-              <div className="py-16 text-center text-slate-500">
+              <div className="py-16 text-center text-slate-400">
                 No products found matching query.
               </div>
             )}
 
             {/* Pagination */}
             {productPagination.totalPages > 1 && (
-              <div className="flex items-center justify-between p-4 border-t border-slate-800 bg-slate-950/40">
-                <span className="text-xs text-slate-400">
+              <div className="flex items-center justify-between p-4 border-t border-slate-200 bg-slate-50/50">
+                <span className="text-xs text-slate-500">
                   Page {productPagination.page} of {productPagination.totalPages} ({productPagination.total} items)
                 </span>
                 <div className="flex space-x-2">
                   <button
                     disabled={productPagination.page <= 1}
                     onClick={() => loadProducts(productPagination.page - 1)}
-                    className="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-semibold disabled:opacity-40 disabled:hover:bg-slate-800"
+                    className="px-3 py-1 rounded bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold disabled:opacity-40"
                   >
                     Previous
                   </button>
                   <button
                     disabled={productPagination.page >= productPagination.totalPages}
                     onClick={() => loadProducts(productPagination.page + 1)}
-                    className="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-semibold disabled:opacity-40 disabled:hover:bg-slate-800"
+                    className="px-3 py-1 rounded bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold disabled:opacity-40"
                   >
                     Next
                   </button>
@@ -919,8 +921,8 @@ export const AdminDashboardPage = () => {
       {activeTab === 'taxonomy' && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Sectors */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 className="text-base font-bold text-white flex items-center justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-4">
+            <h3 className="text-base font-bold text-slate-900 flex items-center justify-between">
               <span>🏢 Sectors ({taxonomy.sectors.length})</span>
             </h3>
             {taxonomyLoading ? (
@@ -930,10 +932,10 @@ export const AdminDashboardPage = () => {
                 {taxonomy.sectors.map((s) => (
                   <div
                     key={s.name}
-                    className="flex justify-between items-center p-3 rounded-xl bg-slate-800/40 border border-slate-800"
+                    className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-200/80"
                   >
-                    <span className="text-sm font-semibold text-slate-200">{s.name}</span>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-400">
+                    <span className="text-sm font-semibold text-slate-800">{s.name}</span>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-cyan-50 text-cyan-700 border border-cyan-200">
                       {s.count} items
                     </span>
                   </div>
@@ -943,8 +945,8 @@ export const AdminDashboardPage = () => {
           </div>
 
           {/* Categories */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 className="text-base font-bold text-white flex items-center justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-4">
+            <h3 className="text-base font-bold text-slate-900 flex items-center justify-between">
               <span>📂 Categories ({taxonomy.categories.length})</span>
             </h3>
             {taxonomyLoading ? (
@@ -954,13 +956,13 @@ export const AdminDashboardPage = () => {
                 {taxonomy.categories.map((c) => (
                   <div
                     key={c.name}
-                    className="p-3 rounded-xl bg-slate-800/40 border border-slate-800 flex justify-between items-center"
+                    className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex justify-between items-center"
                   >
                     <div>
-                      <div className="text-sm font-semibold text-slate-200">{c.name}</div>
+                      <div className="text-sm font-semibold text-slate-800">{c.name}</div>
                       {c.sector && <div className="text-xs text-slate-500">{c.sector}</div>}
                     </div>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-400">
+                    <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
                       {c.count} items
                     </span>
                   </div>
@@ -970,8 +972,8 @@ export const AdminDashboardPage = () => {
           </div>
 
           {/* Brands */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 className="text-base font-bold text-white flex items-center justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-4">
+            <h3 className="text-base font-bold text-slate-900 flex items-center justify-between">
               <span>🏷️ Brands ({taxonomy.brands.length})</span>
             </h3>
             {taxonomyLoading ? (
@@ -981,10 +983,10 @@ export const AdminDashboardPage = () => {
                 {taxonomy.brands.map((b) => (
                   <div
                     key={b.name}
-                    className="flex justify-between items-center p-3 rounded-xl bg-slate-800/40 border border-slate-800"
+                    className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-200/80"
                   >
-                    <span className="text-sm font-semibold text-slate-200">{b.name}</span>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-purple-500/10 text-purple-400">
+                    <span className="text-sm font-semibold text-slate-800">{b.name}</span>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-purple-50 text-purple-700 border border-purple-200">
                       {b.count} items
                     </span>
                   </div>
@@ -998,16 +1000,16 @@ export const AdminDashboardPage = () => {
       {/* TAB 4: USER ACCOUNTS */}
       {activeTab === 'users' && (
         <div className="space-y-6">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs">
             {usersLoading ? (
               <div className="py-20 flex flex-col items-center justify-center">
                 <Spinner size="lg" />
-                <p className="text-xs text-slate-400 mt-2 font-mono">Loading user registry...</p>
+                <p className="text-xs text-slate-500 mt-2 font-mono">Loading user registry...</p>
               </div>
             ) : users.length > 0 ? (
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-slate-300">
-                  <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase font-semibold border-b border-slate-800">
+                <table className="w-full text-left text-sm text-slate-700">
+                  <thead className="bg-slate-50 text-xs text-slate-600 uppercase font-bold border-b border-slate-200">
                     <tr>
                       <th className="py-4 px-6">User</th>
                       <th className="py-4 px-6">Email</th>
@@ -1016,43 +1018,43 @@ export const AdminDashboardPage = () => {
                       <th className="py-4 px-6 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-100">
                     {users.map((u) => (
-                      <tr key={u._id || u.id} className="hover:bg-slate-800/30 transition">
-                        <td className="py-4 px-6 font-semibold text-white">
+                      <tr key={u._id || u.id} className="hover:bg-slate-50/70 transition">
+                        <td className="py-4 px-6 font-semibold text-slate-900">
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 rounded-full bg-cyan-600/20 text-cyan-400 flex items-center justify-center font-bold text-xs uppercase">
+                            <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs uppercase">
                               {(u.name || 'U')[0]}
                             </div>
                             <span>{u.name}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-6 text-slate-300 font-mono text-xs">{u.email}</td>
+                        <td className="py-4 px-6 text-slate-600 font-mono text-xs">{u.email}</td>
                         <td className="py-4 px-6">
                           <span
                             className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                               u.role === 'admin'
-                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                                : 'bg-slate-800 text-slate-400'
+                                ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                : 'bg-slate-100 text-slate-600 border border-slate-200'
                             }`}
                           >
                             {u.role || 'user'}
                           </span>
                         </td>
-                        <td className="py-4 px-6 text-xs text-slate-400">
+                        <td className="py-4 px-6 text-xs text-slate-500">
                           {u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}
                         </td>
                         <td className="py-4 px-6 text-right">
                           <div className="flex items-center justify-end space-x-2">
                             <button
                               onClick={() => setUserActionConfirm({ type: 'toggleRole', user: u })}
-                              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition"
+                              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 transition"
                             >
                               {u.role === 'admin' ? 'Revoke Admin' : 'Make Admin'}
                             </button>
                             <button
                               onClick={() => setUserActionConfirm({ type: 'deleteUser', user: u })}
-                              className="px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 text-xs font-semibold rounded-lg transition"
+                              className="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold rounded-lg border border-rose-200 transition"
                             >
                               Delete
                             </button>
@@ -1064,7 +1066,7 @@ export const AdminDashboardPage = () => {
                 </table>
               </div>
             ) : (
-              <div className="py-16 text-center text-slate-500">No users found.</div>
+              <div className="py-16 text-center text-slate-400">No users found.</div>
             )}
           </div>
         </div>
@@ -1073,51 +1075,51 @@ export const AdminDashboardPage = () => {
       {/* TAB 5: SYSTEM HEALTH & OBSERVABILITY */}
       {activeTab === 'system' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-            <h3 className="text-lg font-bold text-white flex items-center justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-6">
+            <h3 className="text-lg font-bold text-slate-900 flex items-center justify-between">
               <span>🖥️ System Observability & Metrics</span>
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-50 text-emerald-700 border border-emerald-200">
                 {systemHealth?.status || 'Active'}
               </span>
             </h3>
 
             <div className="space-y-4">
-              <div className="flex justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400 text-sm">Server Uptime</span>
-                <span className="text-white font-mono font-bold text-sm">
+              <div className="flex justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-slate-600 text-sm">Server Uptime</span>
+                <span className="text-slate-900 font-mono font-bold text-sm">
                   {systemHealth?.uptime ? `${Math.round(systemHealth.uptime)} seconds` : 'Active'}
                 </span>
               </div>
 
-              <div className="flex justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400 text-sm">Node Environment</span>
-                <span className="text-cyan-400 font-mono font-bold text-sm">
+              <div className="flex justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-slate-600 text-sm">Node Environment</span>
+                <span className="text-blue-600 font-mono font-bold text-sm">
                   {systemHealth?.environment || 'development'}
                 </span>
               </div>
 
-              <div className="flex justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400 text-sm">API Version</span>
-                <span className="text-indigo-400 font-mono font-bold text-sm">
+              <div className="flex justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-slate-600 text-sm">API Version</span>
+                <span className="text-indigo-600 font-mono font-bold text-sm">
                   {systemHealth?.version || '0.5.0'}
                 </span>
               </div>
 
               {systemHealth?.memory && (
-                <div className="p-4 rounded-xl bg-slate-800/40 border border-slate-800 space-y-2">
-                  <div className="text-xs font-bold text-slate-300 uppercase">Process Memory Profile</div>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <div className="text-xs font-bold text-slate-600 uppercase">Process Memory Profile</div>
                   <div className="grid grid-cols-3 gap-2 text-center pt-2">
-                    <div className="bg-slate-900 p-2 rounded-lg">
-                      <div className="text-xs text-slate-400">RSS</div>
-                      <div className="text-sm font-mono font-bold text-white">{systemHealth.memory.rssMb} MB</div>
+                    <div className="bg-white border border-slate-200 p-2.5 rounded-lg shadow-2xs">
+                      <div className="text-xs text-slate-500">RSS</div>
+                      <div className="text-sm font-mono font-bold text-slate-900">{systemHealth.memory.rssMb} MB</div>
                     </div>
-                    <div className="bg-slate-900 p-2 rounded-lg">
-                      <div className="text-xs text-slate-400">Heap Used</div>
-                      <div className="text-sm font-mono font-bold text-cyan-400">{systemHealth.memory.heapUsedMb} MB</div>
+                    <div className="bg-white border border-slate-200 p-2.5 rounded-lg shadow-2xs">
+                      <div className="text-xs text-slate-500">Heap Used</div>
+                      <div className="text-sm font-mono font-bold text-blue-600">{systemHealth.memory.heapUsedMb} MB</div>
                     </div>
-                    <div className="bg-slate-900 p-2 rounded-lg">
-                      <div className="text-xs text-slate-400">Heap Total</div>
-                      <div className="text-sm font-mono font-bold text-purple-400">{systemHealth.memory.heapTotalMb} MB</div>
+                    <div className="bg-white border border-slate-200 p-2.5 rounded-lg shadow-2xs">
+                      <div className="text-xs text-slate-500">Heap Total</div>
+                      <div className="text-sm font-mono font-bold text-purple-600">{systemHealth.memory.heapTotalMb} MB</div>
                     </div>
                   </div>
                 </div>
@@ -1125,22 +1127,22 @@ export const AdminDashboardPage = () => {
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-            <h3 className="text-lg font-bold text-white">🌐 Database & External Provider Adapters</h3>
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-6">
+            <h3 className="text-lg font-bold text-slate-900">🌐 Database & External Provider Adapters</h3>
 
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-slate-800/40 border border-slate-800 space-y-2">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-semibold text-white">MongoDB Atlas Database</span>
+                  <span className="text-sm font-semibold text-slate-900">MongoDB Atlas Database</span>
                   <span
                     className={`px-2 py-0.5 rounded text-xs font-bold ${
-                      systemHealth?.database?.connected ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'
+                      systemHealth?.database?.connected ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
                     }`}
                   >
                     {systemHealth?.database?.state || 'connected'}
                   </span>
                 </div>
-                <div className="text-xs text-slate-400 font-mono">
+                <div className="text-xs text-slate-500 font-mono">
                   Host: {systemHealth?.database?.host || 'remote'} | Database: {systemHealth?.database?.database || 'aryan_electronics'}
                 </div>
               </div>
@@ -1148,17 +1150,17 @@ export const AdminDashboardPage = () => {
               {systemHealth?.providers?.map((prov) => (
                 <div
                   key={prov.name}
-                  className="p-4 rounded-xl bg-slate-800/40 border border-slate-800 flex justify-between items-center"
+                  className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center"
                 >
                   <div>
-                    <div className="text-sm font-semibold text-white">{prov.name}</div>
-                    <div className="text-xs text-slate-400 font-mono">Type: {prov.type}</div>
+                    <div className="text-sm font-semibold text-slate-900">{prov.name}</div>
+                    <div className="text-xs text-slate-500 font-mono">Type: {prov.type}</div>
                   </div>
                   <span
                     className={`px-2.5 py-1 rounded text-xs font-bold uppercase font-mono ${
                       prov.status === 'live' || prov.status === 'active'
-                        ? 'bg-emerald-500/20 text-emerald-300'
-                        : 'bg-indigo-500/20 text-indigo-300'
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : 'bg-indigo-50 text-indigo-700 border border-indigo-200'
                     }`}
                   >
                     {prov.status}
@@ -1172,10 +1174,10 @@ export const AdminDashboardPage = () => {
 
       {/* CREATE / EDIT PRODUCT MODAL */}
       {(isCreateModalOpen || isEditModalOpen) && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl my-8">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl my-8">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-extrabold text-slate-900">
                 {isCreateModalOpen ? 'Create New Product' : `Edit Product: ${selectedProduct?.title}`}
               </h3>
               <button
@@ -1183,7 +1185,7 @@ export const AdminDashboardPage = () => {
                   setIsCreateModalOpen(false);
                   setIsEditModalOpen(false);
                 }}
-                className="text-slate-400 hover:text-white text-lg font-bold"
+                className="text-slate-400 hover:text-slate-700 text-lg font-bold"
               >
                 ✕
               </button>
@@ -1191,109 +1193,109 @@ export const AdminDashboardPage = () => {
 
             <form onSubmit={handleSaveProduct} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Product Title *</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Product Title *</label>
                 <input
                   type="text"
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Brand *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Brand *</label>
                   <input
                     type="text"
                     required
                     value={formData.brand}
                     onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">SKU *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">SKU *</label>
                   <input
                     type="text"
                     required
                     value={formData.SKU}
                     onChange={(e) => setFormData({ ...formData, SKU: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Sector *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Sector *</label>
                   <input
                     type="text"
                     required
                     value={formData.sector}
                     onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Category *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Category *</label>
                   <input
                     type="text"
                     required
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Price ($)</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Price ($)</label>
                   <input
                     type="number"
                     step="0.01"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Discount %</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Discount %</label>
                   <input
                     type="number"
                     min="0"
                     max="100"
                     value={formData.discountPercentage}
                     onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Stock Count</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Stock Count</label>
                   <input
                     type="number"
                     min="0"
                     value={formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Thumbnail URL</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Thumbnail URL</label>
                 <input
                   type="url"
                   value={formData.thumbnail}
                   onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
                   placeholder="https://..."
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
                   Additional Images (one URL per line)
                 </label>
                 <textarea
@@ -1301,18 +1303,18 @@ export const AdminDashboardPage = () => {
                   value={formData.imagesText}
                   onChange={(e) => setFormData({ ...formData, imagesText: e.target.value })}
                   placeholder="https://..."
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Description *</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Description *</label>
                 <textarea
                   rows={3}
                   required
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
 
@@ -1322,9 +1324,9 @@ export const AdminDashboardPage = () => {
                     type="checkbox"
                     checked={formData.isFeatured}
                     onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                    className="rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0"
+                    className="rounded border-slate-300 text-blue-600 focus:ring-0"
                   />
-                  <span className="text-sm text-slate-300 font-semibold">Featured Product</span>
+                  <span className="text-sm text-slate-800 font-semibold">Featured Product</span>
                 </label>
 
                 <label className="flex items-center space-x-2 cursor-pointer">
@@ -1332,26 +1334,26 @@ export const AdminDashboardPage = () => {
                     type="checkbox"
                     checked={formData.isTrending}
                     onChange={(e) => setFormData({ ...formData, isTrending: e.target.checked })}
-                    className="rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0"
+                    className="rounded border-slate-300 text-blue-600 focus:ring-0"
                   />
-                  <span className="text-sm text-slate-300 font-semibold">Trending Product</span>
+                  <span className="text-sm text-slate-800 font-semibold">Trending Product</span>
                 </label>
               </div>
 
-              <div className="flex justify-end space-x-3 pt-4 border-t border-slate-800">
+              <div className="flex justify-end space-x-3 pt-4 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => {
                     setIsCreateModalOpen(false);
                     setIsEditModalOpen(false);
                   }}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-semibold rounded-xl"
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl border border-slate-200 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-cyan-600/30"
+                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow-xs transition"
                 >
                   Save Product
                 </button>
@@ -1363,16 +1365,16 @@ export const AdminDashboardPage = () => {
 
       {/* SELLER OFFERS MODAL */}
       {isSellerModalOpen && selectedProduct && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-xl w-full p-6 shadow-2xl space-y-6">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-6">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-lg font-bold text-white">Seller Offers</h3>
-                <p className="text-xs text-slate-400">{selectedProduct.title}</p>
+                <h3 className="text-lg font-bold text-slate-900">Seller Offers</h3>
+                <p className="text-xs text-slate-500">{selectedProduct.title}</p>
               </div>
               <button
                 onClick={() => setIsSellerModalOpen(false)}
-                className="text-slate-400 hover:text-white font-bold"
+                className="text-slate-400 hover:text-slate-700 font-bold"
               >
                 ✕
               </button>
@@ -1384,33 +1386,33 @@ export const AdminDashboardPage = () => {
                 selectedProduct.sellers.map((seller) => (
                   <div
                     key={seller.name}
-                    className="flex justify-between items-center p-3 rounded-xl bg-slate-800/40 border border-slate-750"
+                    className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-200/80"
                   >
                     <div>
-                      <div className="text-sm font-bold text-white">{seller.name}</div>
-                      <div className="text-xs text-slate-400">
+                      <div className="text-sm font-bold text-slate-900">{seller.name}</div>
+                      <div className="text-xs text-slate-500">
                         ${seller.price?.toFixed(2) || 'N/A'} • Rating: {seller.rating} ★ •{' '}
                         {seller.inStock ? 'In Stock' : 'Out of Stock'}
                       </div>
                     </div>
                     <button
                       onClick={() => handleRemoveSellerOffer(seller.name)}
-                      className="px-2.5 py-1 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 rounded-lg text-xs font-semibold"
+                      className="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 rounded-lg text-xs font-semibold transition"
                     >
                       Remove
                     </button>
                   </div>
                 ))
               ) : (
-                <div className="py-6 text-center text-xs text-slate-500">
+                <div className="py-6 text-center text-xs text-slate-400">
                   No aggregated seller offers attached yet.
                 </div>
               )}
             </div>
 
             {/* Add seller form */}
-            <form onSubmit={handleAddSellerOffer} className="space-y-3 pt-4 border-t border-slate-800">
-              <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider">
+            <form onSubmit={handleAddSellerOffer} className="space-y-3 pt-4 border-t border-slate-200">
+              <div className="text-xs font-bold text-blue-600 uppercase tracking-wider">
                 Add New Seller Offer
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -1420,7 +1422,7 @@ export const AdminDashboardPage = () => {
                   placeholder="Seller / Retailer Name *"
                   value={sellerForm.name}
                   onChange={(e) => setSellerForm({ ...sellerForm, name: e.target.value })}
-                  className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white"
+                  className="px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                 />
                 <input
                   type="number"
@@ -1428,7 +1430,7 @@ export const AdminDashboardPage = () => {
                   placeholder="Offered Price ($)"
                   value={sellerForm.price}
                   onChange={(e) => setSellerForm({ ...sellerForm, price: e.target.value })}
-                  className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white"
+                  className="px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -1437,15 +1439,15 @@ export const AdminDashboardPage = () => {
                   placeholder="Product Offer URL"
                   value={sellerForm.url}
                   onChange={(e) => setSellerForm({ ...sellerForm, url: e.target.value })}
-                  className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white font-mono"
+                  className="px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
                 />
                 <div className="flex items-center space-x-2">
-                  <label className="flex items-center space-x-2 text-xs text-slate-300">
+                  <label className="flex items-center space-x-2 text-xs text-slate-700">
                     <input
                       type="checkbox"
                       checked={sellerForm.inStock}
                       onChange={(e) => setSellerForm({ ...sellerForm, inStock: e.target.checked })}
-                      className="rounded bg-slate-800"
+                      className="rounded border-slate-300 text-blue-600 focus:ring-0"
                     />
                     <span>Available / In Stock</span>
                   </label>
@@ -1454,7 +1456,7 @@ export const AdminDashboardPage = () => {
               <div className="flex justify-end pt-2">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-xs"
                 >
                   + Add Seller Offer
                 </button>
@@ -1466,25 +1468,25 @@ export const AdminDashboardPage = () => {
 
       {/* DELETE PRODUCT CONFIRMATION MODAL */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-rose-500/30 rounded-3xl max-w-md w-full p-6 shadow-2xl text-center space-y-4">
-            <div className="w-12 h-12 mx-auto bg-rose-500/10 text-rose-400 rounded-2xl flex items-center justify-center text-2xl">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-rose-200 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center space-y-4">
+            <div className="w-12 h-12 mx-auto bg-rose-50 text-rose-600 border border-rose-200 rounded-2xl flex items-center justify-center text-2xl">
               🗑️
             </div>
-            <h3 className="text-lg font-bold text-white">Confirm Product Deletion</h3>
-            <p className="text-xs text-slate-400">
+            <h3 className="text-lg font-bold text-slate-900">Confirm Product Deletion</h3>
+            <p className="text-xs text-slate-600">
               Are you sure you want to delete this product? This action cannot be undone and will remove it from search and discovery.
             </p>
             <div className="flex justify-center space-x-3 pt-2">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDeleteProduct(deleteConfirmId)}
-                className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-rose-600/30"
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-xs transition"
               >
                 Yes, Delete Product
               </button>
@@ -1495,12 +1497,12 @@ export const AdminDashboardPage = () => {
 
       {/* USER ACTION CONFIRMATION MODAL */}
       {userActionConfirm && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 shadow-2xl text-center space-y-4">
-            <h3 className="text-lg font-bold text-white">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center space-y-4">
+            <h3 className="text-lg font-bold text-slate-900">
               {userActionConfirm.type === 'toggleRole' ? 'Update User Role' : 'Delete User Account'}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-600">
               {userActionConfirm.type === 'toggleRole'
                 ? `Confirm role change for ${userActionConfirm.user.email}?`
                 : `Are you sure you want to permanently delete user account ${userActionConfirm.user.email}?`}
@@ -1508,7 +1510,7 @@ export const AdminDashboardPage = () => {
             <div className="flex justify-center space-x-3 pt-2">
               <button
                 onClick={() => setUserActionConfirm(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition"
               >
                 Cancel
               </button>
@@ -1520,10 +1522,10 @@ export const AdminDashboardPage = () => {
                     handleDeleteUser(userActionConfirm.user);
                   }
                 }}
-                className={`px-4 py-2 text-white text-xs font-bold rounded-xl ${
+                className={`px-4 py-2 text-white text-xs font-bold rounded-xl transition shadow-xs ${
                   userActionConfirm.type === 'toggleRole'
-                    ? 'bg-cyan-600 hover:bg-cyan-500'
-                    : 'bg-rose-600 hover:bg-rose-500'
+                    ? 'bg-blue-600 hover:bg-blue-700'
+                    : 'bg-rose-600 hover:bg-rose-700'
                 }`}
               >
                 Confirm Action

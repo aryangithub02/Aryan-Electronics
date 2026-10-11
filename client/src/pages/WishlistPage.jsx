@@ -12,17 +12,17 @@ export const WishlistPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 font-sans">
       {/* Header */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono">
+      <div className="space-y-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-600 text-xs font-mono">
           <Heart className="w-3.5 h-3.5 fill-rose-500/30" />
           <span>Curated Personal Favorites</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          My <span className="gradient-text">Wishlist</span>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          My <span className="text-rose-600">Wishlist</span>
         </h1>
-        <p className="text-sm text-slate-300 max-w-2xl">
+        <p className="text-sm text-slate-600 max-w-2xl">
           Track electronic products you are interested in. Access updated distributor pricing, inventory levels, and specifications anytime.
         </p>
       </div>

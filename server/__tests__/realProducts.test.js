@@ -7,12 +7,12 @@ const { loadAndValidateProducts } = require('../data/importProducts');
 describe('Real Product Dataset Integration Tests', () => {
   const jsonPath = path.resolve(__dirname, '../../aryan_electronics_products.json');
 
-  it('aryan_electronics_products.json exists and contains 188 verified products', () => {
+  it('aryan_electronics_products.json exists and contains 688 verified products', () => {
     expect(fs.existsSync(jsonPath)).toBe(true);
     const content = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
     const prods = Array.isArray(content.products) ? content.products : content;
     expect(Array.isArray(prods)).toBe(true);
-    expect(prods.length).toBe(188);
+    expect(prods.length).toBe(688);
   });
 
   it('validates dataset integrity: no duplicates, no placeholder services, valid schemas', () => {
@@ -53,18 +53,18 @@ describe('Real Product Dataset Integration Tests', () => {
       skuSet.add(sku);
     });
 
-    expect(idSet.size).toBe(188);
-    expect(skuSet.size).toBe(188);
+    expect(idSet.size).toBe(688);
+    expect(skuSet.size).toBe(688);
   });
 
   it('loadAndValidateProducts transforms specifications into name-value pairs while preserving rawSpecifications', () => {
     const { products, summary } = loadAndValidateProducts();
 
-    expect(summary.totalRecords).toBe(188);
-    expect(summary.successfullyImported).toBe(188);
+    expect(summary.totalRecords).toBe(688);
+    expect(summary.successfullyImported).toBe(688);
     expect(summary.failed).toBe(0);
     expect(summary.duplicateRecords).toBe(0);
-    expect(products.length).toBe(188);
+    expect(products.length).toBe(688);
 
     const first = products[0];
     expect(Array.isArray(first.specifications)).toBe(true);

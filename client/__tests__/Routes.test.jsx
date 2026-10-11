@@ -7,6 +7,9 @@ import SectorsPage from '../src/pages/SectorsPage';
 import ProductsPage from '../src/pages/ProductsPage';
 import ProductDetailPage from '../src/pages/ProductDetailPage';
 import ComparePage from '../src/pages/ComparePage';
+import BrandsPage from '../src/pages/BrandsPage';
+import AboutPage from '../src/pages/AboutPage';
+import ContactPage from '../src/pages/ContactPage';
 import NotFoundPage from '../src/pages/NotFoundPage';
 
 jest.mock('../src/services/api', () => {
@@ -66,6 +69,9 @@ const renderRoute = (initialPath) => {
           <Route path="/sectors" element={<SectorsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/brands" element={<BrandsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/compare" element={<ComparePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
@@ -93,6 +99,27 @@ describe('Route Navigation Tests', () => {
     renderRoute('/products');
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 1, name: /Product Catalog/i })).toBeInTheDocument();
+    });
+  });
+
+  it('renders Brands & Sellers directory at "/brands"', async () => {
+    renderRoute('/brands');
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { level: 1, name: /Brands & Verified Sellers Directory/i })).toBeInTheDocument();
+    });
+  });
+
+  it('renders About page at "/about"', async () => {
+    renderRoute('/about');
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { level: 1, name: /Empowering Smarter Hardware Decisions/i })).toBeInTheDocument();
+    });
+  });
+
+  it('renders Contact page at "/contact"', async () => {
+    renderRoute('/contact');
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { level: 1, name: /We’re Here to Help You Find the Right Tech/i })).toBeInTheDocument();
     });
   });
 

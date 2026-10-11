@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
@@ -12,7 +13,11 @@ const HomePage = lazyWithRetry(() => import('./pages/HomePage'));
 const SectorsPage = lazyWithRetry(() => import('./pages/SectorsPage'));
 const ProductsPage = lazyWithRetry(() => import('./pages/ProductsPage'));
 const ProductDetailPage = lazyWithRetry(() => import('./pages/ProductDetailPage'));
+const BrandsPage = lazyWithRetry(() => import('./pages/BrandsPage'));
+const AboutPage = lazyWithRetry(() => import('./pages/AboutPage'));
+const ContactPage = lazyWithRetry(() => import('./pages/ContactPage'));
 const ComparePage = lazyWithRetry(() => import('./pages/ComparePage'));
+const CartPage = lazyWithRetry(() => import('./pages/CartPage'));
 const LoginPage = lazyWithRetry(() => import('./pages/LoginPage'));
 const RegisterPage = lazyWithRetry(() => import('./pages/RegisterPage'));
 const AccountPage = lazyWithRetry(() => import('./pages/AccountPage'));
@@ -32,33 +37,38 @@ const PageLoader = () => (
 export const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Layout>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/sectors" element={<SectorsPage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:id" element={<ProductDetailPage />} />
-              <Route path="/compare" element={<ComparePage />} />
+      <CartProvider>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/sectors" element={<SectorsPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/products/:id" element={<ProductDetailPage />} />
+                <Route path="/brands" element={<BrandsPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/compare" element={<ComparePage />} />
+                <Route path="/cart" element={<CartPage />} />
 
-              {/* Authentication Routes (Phase 2) */}
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+                {/* Authentication Routes (Phase 2) */}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
 
-              {/* Personalized & Protected Routes (Phase 2) */}
-              <Route
-                path="/account"
-                element={
-                  <ProtectedRoute>
-                    <AccountPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/saved" element={<SavedProductsPage />} />
-              <Route path="/recent" element={<RecentlyViewedPage />} />
-              <Route path="/recently-viewed" element={<RecentlyViewedPage />} />
+                {/* Personalized & Protected Routes (Phase 2) */}
+                <Route
+                  path="/account"
+                  element={
+                    <ProtectedRoute>
+                      <AccountPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/wishlist" element={<WishlistPage />} />
+                <Route path="/saved" element={<SavedProductsPage />} />
+                <Route path="/recent" element={<RecentlyViewedPage />} />
+                <Route path="/recently-viewed" element={<RecentlyViewedPage />} />
 
               {/* Admin & Analytics Dashboard (Phase 5) */}
               <Route
@@ -76,6 +86,7 @@ export const App = () => {
           </Suspense>
         </Layout>
       </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 };
