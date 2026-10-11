@@ -63,6 +63,7 @@ export const RecentlyViewedPage = () => {
                     alt={product.title}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    referrerPolicy="no-referrer"
                     onError={handleImageError}
                   />
                   <div className="absolute top-3 left-3 flex gap-1.5">

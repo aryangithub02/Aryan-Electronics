@@ -797,6 +797,7 @@ export const AdminDashboardPage = () => {
                               src={prod.thumbnail || (prod.images && prod.images[0]) || '/placeholder.svg'}
                               alt={prod.title}
                               className="w-12 h-12 rounded-lg object-contain bg-slate-50 border border-slate-200 p-1 flex-shrink-0"
+                              referrerPolicy="no-referrer"
                               onError={(e) => {
                                 e.currentTarget.src =
                                   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="100%" height="100%" fill="%23f1f5f9"/></svg>';

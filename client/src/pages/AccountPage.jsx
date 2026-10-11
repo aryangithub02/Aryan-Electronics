@@ -236,6 +236,7 @@ export const AccountPage = () => {
                       src={prod.thumbnail || prod.images?.[0]}
                       alt={prod.title}
                       className="w-12 h-12 object-contain p-1 rounded-lg bg-white border border-slate-200 flex-shrink-0"
+                      referrerPolicy="no-referrer"
                       onError={handleImageError}
                     />
                     <div className="min-w-0 flex-1">
@@ -299,6 +300,7 @@ export const AccountPage = () => {
                     src={prod.thumbnail || prod.images?.[0]}
                     alt={prod.title}
                     className="w-16 h-16 object-contain p-1.5 rounded-lg bg-slate-50 border border-slate-100 flex-shrink-0"
+                    referrerPolicy="no-referrer"
                     onError={handleImageError}
                   />
                   <div className="flex-1 min-w-0">
@@ -346,6 +348,7 @@ export const AccountPage = () => {
                     src={prod.thumbnail || prod.images?.[0]}
                     alt={prod.title}
                     className="w-16 h-16 object-contain p-1.5 rounded-lg bg-slate-50 border border-slate-100 flex-shrink-0"
+                    referrerPolicy="no-referrer"
                     onError={handleImageError}
                   />
                   <div className="flex-1 min-w-0">
@@ -393,6 +396,7 @@ export const AccountPage = () => {
                     src={prod.thumbnail || prod.images?.[0]}
                     alt={prod.title}
                     className="w-16 h-16 object-contain p-1.5 rounded-lg bg-slate-50 border border-slate-100 flex-shrink-0"
+                    referrerPolicy="no-referrer"
                     onError={handleImageError}
                   />
                   <div className="flex-1 min-w-0">
